@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://techhigh.co.uk/keyvane/sitemap.xml

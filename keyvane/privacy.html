@@ -1,0 +1,237 @@
+<!doctype html>
+<!-- DRAFT — pending legal review. Not yet approved for publication as a final policy. -->
+<html lang="en-GB" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Policy — Keyvane</title>
+  <meta name="description" content="Keyvane privacy policy: what TechHigh never sees (master password, Secret Key, vault contents), what the app stores locally, what storage providers and Keyvane Cloud see, and your rights under UK GDPR.">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#0E0B1F" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#F6F6FC" media="(prefers-color-scheme: light)">
+  <link rel="canonical" href="https://techhigh.co.uk/keyvane/privacy.html">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@600;700&amp;display=swap">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/site.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="draft-banner" role="status"><div class="container"><strong>Draft</strong> — pending legal review. This policy is published for transparency while Keyvane is in testing and may change before launch.</div></div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html"><img src="assets/logo.svg" alt="" width="32" height="32">Keyvane</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span class="sr-only">Menu</span><span class="nav-toggle-bar" aria-hidden="true"></span></button>
+      <nav id="site-nav" class="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="index.html#features">Features</a></li>
+          <li><a href="index.html#storage">Storage</a></li>
+          <li><a href="index.html#organisations">Teams</a></li>
+          <li><a href="security.html">Security</a></li>
+          <li><a href="index.html#pricing">Pricing</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+          <li><a class="btn btn-primary btn-sm" href="index.html#download">Download</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="container">
+      <header class="page-head">
+        <span class="eyebrow">Legal</span>
+        <h1>Privacy Policy</h1>
+        <p>Last updated 6 November 2026 · Applies to the Keyvane apps, browser extension, command-line tool, Keyvane Cloud and this website.</p>
+      </header>
+
+      <nav class="toc" aria-label="On this page">
+        <h2>On this page</h2>
+        <ol>
+          <li><a href="#summary">The short version</a></li>
+          <li><a href="#controller">Who we are</a></li>
+          <li><a href="#never">What we never see</a></li>
+          <li><a href="#device">What the app stores on your device</a></li>
+          <li><a href="#providers">What your storage provider sees</a></li>
+          <li><a href="#keyvane-cloud">What Keyvane Cloud stores</a></li>
+          <li><a href="#website">This website</a></li>
+          <li><a href="#analytics">Crash reports and analytics</a></li>
+          <li><a href="#cookies">Cookies</a></li>
+          <li><a href="#payments">Payments and app stores</a></li>
+          <li><a href="#support">Support email</a></li>
+          <li><a href="#legal-basis">Legal bases</a></li>
+          <li><a href="#rights">Your rights</a></li>
+          <li><a href="#retention">Retention</a></li>
+          <li><a href="#transfers">International transfers</a></li>
+          <li><a href="#children">Children</a></li>
+          <li><a href="#changes">Changes to this policy</a></li>
+          <li><a href="#contact">Contact and complaints</a></li>
+        </ol>
+      </nav>
+
+      <div class="prose">
+
+        <h2 id="summary">The short version</h2>
+        <ul>
+          <li>Your vault is encrypted on your device. We cannot read it, and neither can your storage provider.</li>
+          <li>If you only use your own storage (Google Drive, iCloud, Dropbox, OneDrive, WebDAV, S3, your own server, a folder, or the device alone), we receive <strong>no data about you at all</strong>.</li>
+          <li>If you use Keyvane Cloud, we store your email address, the names of your organisations and groups, who belongs to what, and encrypted files. The list is in <a href="#keyvane-cloud">section 5</a>.</li>
+          <li>No analytics, no crash reporting, no advertising, no cookies on this website.</li>
+        </ul>
+
+        <h2 id="controller">1. Who we are</h2>
+        <p>Keyvane is made by <strong>TechHigh</strong> ("TechHigh", "we", "us"), a company based in the United Kingdom. For the purposes of the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018, TechHigh is the <strong>data controller</strong> for the personal data described in this policy.</p>
+        <p>Registered office and company number: <em>[to be completed before launch]</em>. Website: <a href="https://techhigh.co.uk" rel="noopener">techhigh.co.uk</a>. Privacy contact: <a href="mailto:privacy@techhigh.co.uk">privacy@techhigh.co.uk</a>.</p>
+
+        <h2 id="never">2. What we never see</h2>
+        <p>Keyvane is designed so that the following never leave your devices in a readable form. We do not collect them, we cannot access them, and we cannot recover them for you:</p>
+        <ul>
+          <li>your <strong>master password</strong>;</li>
+          <li>your <strong>Secret Key</strong>;</li>
+          <li>your <strong>vault key</strong> and any collection or audit keys;</li>
+          <li>the <strong>contents of your vault</strong>: client names, item titles, usernames, passwords, URLs, notes, tags, attachments, 2FA secrets and codes, history;</li>
+          <li>the <strong>names of shared collections</strong> and the <strong>details of activity-log entries</strong> in organisations.</li>
+        </ul>
+        <p>How this is achieved is described on the <a href="security.html">Security page</a>.</p>
+
+        <h2 id="device">3. What the app stores on your device</h2>
+        <p>The app keeps the following locally, on the device you install it on. None of it is sent to TechHigh.</p>
+        <ul>
+          <li>Your encrypted vault file and a local backup copy of it.</li>
+          <li>Your Secret Key, in the device's secure keychain or equivalent.</li>
+          <li>If you enable biometric unlock, the vault key, in the device keychain behind the biometric prompt.</li>
+          <li>If you use Keyvane Cloud, your session token and your account's private keys, sealed with the vault key.</li>
+          <li>Sign-in tokens for any storage provider you connect (for example Google Drive or Dropbox), issued by that provider.</li>
+          <li>Settings and preferences, such as auto-lock time and theme.</li>
+        </ul>
+        <p>Deleting the app removes these, except where your operating system keeps keychain entries or a cloud backup of app data; see your platform's documentation.</p>
+
+        <h2 id="providers">4. What your storage provider sees</h2>
+        <p>When you choose a third-party storage option, your encrypted vault file is uploaded directly from your device to that provider using your own account with them. TechHigh is not involved in the transfer and does not receive a copy.</p>
+        <p>The provider (Google, Apple, Dropbox, Microsoft, your WebDAV or S3 host, or your own Firebase project) can see: the encrypted file, its size, the times it was changed, the name of the file, and whatever metadata their service records about any file, such as your IP address. They <strong>cannot</strong> read the contents. Their handling of your account is governed by their own privacy policies.</p>
+        <p>When Keyvane connects to a provider it asks for the narrowest permission available — for example an app-private folder on Google Drive and Dropbox — so that it cannot see your other files.</p>
+
+        <h2 id="keyvane-cloud">5. What Keyvane Cloud stores</h2>
+        <p>Keyvane Cloud is an optional service operated by TechHigh for zero-setup sync and for organisations (shared collections). It is still end-to-end encrypted. If you create a Keyvane Cloud account, we store:</p>
+        <h3>Personal data</h3>
+        <ul>
+          <li><strong>Your email address</strong> and a hash of your authentication key (a value derived from your master password that proves you know it; it cannot be turned back into your password).</li>
+          <li><strong>Your public keys</strong> (one for encryption, one for signatures) and your encrypted account key file.</li>
+          <li><strong>Organisation names</strong> and <strong>group names</strong> you create or belong to.</li>
+          <li><strong>Membership</strong>: which people are in which organisation and group, their roles, invite and approval status, and guest end dates.</li>
+          <li><strong>Access lists</strong>: who can open which collection, by collection id, with which permission.</li>
+          <li><strong>Sizes and timestamps</strong> of encrypted vault and collection files, and their revision numbers.</li>
+          <li><strong>When activity-log entries are posted, and by whom</strong>. The content of each entry is encrypted to the organisation's audit key and is not readable by us.</li>
+          <li><strong>Invite tokens</strong> (stored as a hash) and signed member certificates and key grants, which are needed for sharing to work.</li>
+        </ul>
+        <h3>Technical data</h3>
+        <ul>
+          <li>Server logs containing the IP address, timestamp, requested endpoint and response status of each request, and the app version, kept for security and troubleshooting.</li>
+        </ul>
+        <p>We do <strong>not</strong> store: master passwords, Secret Keys, vault keys, collection keys, audit keys, item contents, collection names or activity details.</p>
+        <p>If you self-host the server, TechHigh receives none of the above; the operator of that server is the controller for it.</p>
+
+        <h2 id="website">6. This website</h2>
+        <p>This website (techhigh.co.uk/keyvane) is a static site. It sets no cookies, runs no analytics, and contains no third-party scripts. Fonts are loaded from Google Fonts, which means Google receives the request for the font files together with your IP address and browser details; see <a href="https://developers.google.com/fonts/faq/privacy" rel="noopener">Google Fonts privacy</a>.</p>
+        <p>The site is served by Cloudflare, our hosting provider, which processes connection data such as your IP address to deliver pages and protect against abuse. We do not access visitor-level logs.</p>
+
+        <h2 id="analytics">7. Crash reports and analytics</h2>
+        <p><strong>None.</strong> The Keyvane apps, extension and CLI contain no analytics, telemetry, advertising or crash-reporting libraries. If the app crashes, nothing is sent to us. Your operating system or app store may offer to send crash reports to the platform vendor under their own policies; this is controlled by your device settings, not by Keyvane.</p>
+
+        <h2 id="cookies">8. Cookies</h2>
+        <p>This website uses <strong>no cookies</strong> and no similar storage. The Keyvane web app stores your encrypted vault and settings in your browser's local storage so that it can work offline; that data stays in your browser and is not a tracking mechanism.</p>
+
+        <h2 id="payments">9. Payments and app stores</h2>
+        <p>Paid plans are purchased through Google Play, the Apple App Store, the Microsoft Store or our payment processor, depending on your platform. Those services handle your payment details under their own policies; TechHigh does not receive your full card number. We receive what is needed to honour your purchase, for example a transaction identifier, the plan purchased and its renewal status. The app stores also provide us with aggregate statistics about downloads and ratings that do not identify you.</p>
+
+        <h2 id="support">10. Support email</h2>
+        <p>If you email us, we keep the correspondence so we can answer you and follow up. Please do not send us passwords or vault contents; we never need them and will ask you to delete the message if you do.</p>
+
+        <h2 id="legal-basis">11. Legal bases</h2>
+        <ul>
+          <li><strong>Performance of a contract</strong> (UK GDPR Article 6(1)(b)): operating your Keyvane Cloud account, organisations and purchases.</li>
+          <li><strong>Legitimate interests</strong> (Article 6(1)(f)): keeping the service secure, preventing abuse, troubleshooting, and responding to support requests. We have balanced these against your interests and collect the minimum needed.</li>
+          <li><strong>Legal obligation</strong> (Article 6(1)(c)): keeping purchase records as required by tax law.</li>
+        </ul>
+
+        <h2 id="rights">12. Your rights</h2>
+        <p>Under UK GDPR you have the right to:</p>
+        <ul>
+          <li><strong>access</strong> the personal data we hold about you;</li>
+          <li><strong>rectify</strong> inaccurate data;</li>
+          <li><strong>erase</strong> your data ("right to be forgotten");</li>
+          <li><strong>restrict</strong> or <strong>object</strong> to processing;</li>
+          <li><strong>data portability</strong>;</li>
+          <li><strong>withdraw consent</strong> where processing is based on consent.</li>
+        </ul>
+        <p>Because your vault is encrypted with keys we do not have, we cannot provide, correct or delete its contents for you — but you can, at any time, from inside the app: export it in several formats, change anything, or delete it. For Keyvane Cloud you can delete your account from the app, which removes your email address, keys, memberships and encrypted files. To exercise any other right, email <a href="mailto:privacy@techhigh.co.uk">privacy@techhigh.co.uk</a>. We will respond within one month.</p>
+
+        <h2 id="retention">13. Retention</h2>
+        <ul>
+          <li><strong>Keyvane Cloud account data</strong>: for as long as your account exists, then deleted within 30 days of account deletion, except where retained in backups for up to 90 days.</li>
+          <li><strong>Organisation data</strong>: for as long as the organisation exists. When a member is removed, their grants and membership records are deleted immediately; audit entries naming them remain encrypted in the organisation's log.</li>
+          <li><strong>Server logs</strong>: 30 days.</li>
+          <li><strong>Invite tokens</strong>: expire after 7 days or once used.</li>
+          <li><strong>Purchase records</strong>: 6 years, as required by UK tax law.</li>
+          <li><strong>Support correspondence</strong>: 2 years after the last message.</li>
+        </ul>
+
+        <h2 id="transfers">14. International transfers</h2>
+        <p>Keyvane Cloud is hosted in the United Kingdom or the European Economic Area. Where a provider we use processes data outside the UK, we rely on the UK's adequacy regulations or the International Data Transfer Agreement / Addendum to the EU Standard Contractual Clauses. Storage providers you choose yourself (section 4) process data wherever your account with them is located.</p>
+
+        <h2 id="children">15. Children</h2>
+        <p>Keyvane is not directed at children under 13 and we do not knowingly collect personal data from them. If you believe a child has created a Keyvane Cloud account, contact us and we will delete it.</p>
+
+        <h2 id="changes">16. Changes to this policy</h2>
+        <p>We will post any changes on this page and update the date at the top. If a change materially reduces your rights or expands what we collect, we will tell Keyvane Cloud account holders by email at least 14 days before it takes effect.</p>
+
+        <h2 id="contact">17. Contact and complaints</h2>
+        <p>Privacy questions: <a href="mailto:privacy@techhigh.co.uk">privacy@techhigh.co.uk</a>.<br>Security reports: <a href="mailto:security@techhigh.co.uk">security@techhigh.co.uk</a> (see the <a href="security.html#disclosure">disclosure policy</a>).</p>
+        <p>If you are unhappy with how we handle your data, you have the right to complain to the UK Information Commissioner's Office (ICO): <a href="https://ico.org.uk/make-a-complaint/" rel="noopener">ico.org.uk/make-a-complaint</a>, or by phone on 0303 123 1113. We would appreciate the chance to address your concern first.</p>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a class="brand" href="index.html"><img src="assets/logo.svg" alt="" width="32" height="32">Keyvane</a>
+          <p>Your keys. Your cloud. Nobody else.<br>A product of TechHigh, United Kingdom.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="index.html#features">Features</a></li>
+            <li><a href="index.html#storage">Storage</a></li>
+            <li><a href="index.html#organisations">Organisations</a></li>
+            <li><a href="index.html#pricing">Pricing</a></li>
+            <li><a href="index.html#download">Download</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Trust</h4>
+          <ul>
+            <li><a href="security.html">Security</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+            <li><a href=".well-known/security.txt">security.txt</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="https://techhigh.co.uk" rel="noopener">techhigh.co.uk</a></li>
+            <li><a href="mailto:security@techhigh.co.uk">Report a vulnerability</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer-legal">© 2026 TechHigh. Keyvane and the Keyvane mark are trademarks of TechHigh. No cookies, no tracking.</p>
+    </div>
+  </footer>
+</body>
+</html>
