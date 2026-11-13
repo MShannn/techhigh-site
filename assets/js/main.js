@@ -23,7 +23,7 @@
 
   // Rotating hero word
   const rotator = document.getElementById("rotator");
-  const words = ["higher", "faster", "safer", "smarter"];
+  const words = ["smarter", "faster", "safer", "better"];
   if (!reduceMotion) {
     let i = 0;
     setInterval(() => {
