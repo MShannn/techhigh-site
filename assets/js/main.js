@@ -103,6 +103,29 @@
     });
   });
 
+  // Feature lists start short; "Show all" expands them
+  const openFeats = (feats, open) => {
+    feats.classList.toggle("is-open", open);
+    const btn = feats.querySelector(".feats__more");
+    if (!btn) return;
+    btn.setAttribute("aria-expanded", String(open));
+    btn.textContent = open ? "Show fewer features" : `Show all ${feats.querySelectorAll(".feat").length} features`;
+  };
+  document.querySelectorAll(".feats__more").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const feats = btn.closest(".feats");
+      const open = !feats.classList.contains("is-open");
+      openFeats(feats, open);
+      if (!open) feats.scrollIntoView({ block: "start" });
+    });
+  });
+  document.querySelectorAll('a[href$="-features"]').forEach((link) => {
+    link.addEventListener("click", () => {
+      const feats = document.querySelector(link.getAttribute("href"));
+      if (feats) openFeats(feats, true);
+    });
+  });
+
   // Footer links that open a specific product tab
   document.querySelectorAll("[data-tab]").forEach((link) => {
     link.addEventListener("click", () => {
