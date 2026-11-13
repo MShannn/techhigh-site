@@ -103,6 +103,55 @@
     });
   });
 
+  // Footer links that open a specific product tab
+  document.querySelectorAll("[data-tab]").forEach((link) => {
+    link.addEventListener("click", () => {
+      const tab = document.getElementById(`t-${link.dataset.tab}`);
+      if (tab) selectTab(tab);
+    });
+  });
+
+  // Screenshot strips: arrow buttons scroll one "page"
+  document.querySelectorAll(".shots").forEach((strip) => {
+    const track = strip.querySelector(".shots__track");
+    strip.querySelectorAll(".shots__btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        track.scrollBy({ left: Number(btn.dataset.dir) * track.clientWidth * 0.8, behavior: "smooth" });
+      });
+    });
+  });
+
+  // Lightbox for screenshots (per product gallery, arrow keys to browse)
+  const lb = document.getElementById("lightbox");
+  if (lb && typeof lb.showModal === "function") {
+    const lbImg = lb.querySelector("img");
+    const lbCap = lb.querySelector("figcaption");
+    let group = [];
+    let current = 0;
+    const show = (i) => {
+      current = (i + group.length) % group.length;
+      const shot = group[current];
+      lbImg.src = shot.dataset.src;
+      lbImg.alt = shot.querySelector("img").alt;
+      lbCap.textContent = `${shot.querySelector("span").textContent} · ${current + 1} / ${group.length}`;
+    };
+    document.querySelectorAll(".shot").forEach((shot) => {
+      shot.addEventListener("click", () => {
+        group = [...shot.closest(".shots__track").querySelectorAll(".shot")];
+        show(group.indexOf(shot));
+        lb.showModal();
+      });
+    });
+    lb.querySelector(".lightbox__close").addEventListener("click", () => lb.close());
+    lb.querySelector(".lightbox__nav--prev").addEventListener("click", () => show(current - 1));
+    lb.querySelector(".lightbox__nav--next").addEventListener("click", () => show(current + 1));
+    lb.addEventListener("click", (e) => { if (e.target === lb) lb.close(); });
+    lb.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") show(current + 1);
+      if (e.key === "ArrowLeft") show(current - 1);
+    });
+  }
+
   // Interactive diamond network background
   const canvas = document.getElementById("net");
   const ctx = canvas.getContext("2d");
@@ -271,7 +320,7 @@
     const endpoint = form.getAttribute("action");
     if (!endpoint) {
       const body = `Name: ${data.get("name")}\nEmail: ${data.get("email")}\nCompany: ${data.get("company")}\nInterest: ${data.get("interest")}\n\n${data.get("message")}`;
-      window.location.href = `mailto:support@techhigh.co.uk?subject=${encodeURIComponent("Website enquiry: " + data.get("interest"))}&body=${encodeURIComponent(body)}`;
+      window.location.href = `mailto:hello@techhigh.co.uk?subject=${encodeURIComponent("Website enquiry: " + data.get("interest"))}&body=${encodeURIComponent(body)}`;
       status.textContent = "Opening your email app to send the enquiry…";
       status.classList.add("ok");
       return;
@@ -283,10 +332,10 @@
       const res = await fetch(endpoint, { method: "POST", body: data, headers: { Accept: "application/json" } });
       if (!res.ok) throw new Error(String(res.status));
       form.reset();
-      status.textContent = "Thanks, your enquiry has been sent. We'll be in touch.";
+      status.textContent = "Thanks, your enquiry has been sent. We'll be in touch within one working day.";
       status.classList.add("ok");
     } catch {
-      status.textContent = "Sorry, something went wrong. Please email support@techhigh.co.uk instead.";
+      status.textContent = "Sorry, something went wrong. Please email hello@techhigh.co.uk instead.";
       status.classList.add("err");
     } finally {
       btn.disabled = false;
