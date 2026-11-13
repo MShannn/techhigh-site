@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DeenDost — Prayer Times, Azan, Qibla, Halal Scanner & Kids Apps</title>
+<meta name="description" content="DeenDost is a free family of Islamic apps: DeenDost (all-in-one), Salah (prayer times, Azan and tracker), Halal Scanner and DeenDost Kids. Accurate prayer times for any city in the world, Qibla, mosques, halal food checks, Quran and duas.">
+<meta property="og:title" content="DeenDost — your companion in Deen">
+<meta property="og:description" content="Prayer times, Azan, Qibla, halal scanner, Quran, duas and a kids app — free, for Muslims everywhere.">
+<meta property="og:image" content="https://deendost-uk.web.app/img/icon.png">
+<meta name="theme-color" content="#0B1F3A">
+<link rel="icon" type="image/png" href="./img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Amiri:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:#0B1F3A; --navy2:#102a4c; --teal:#0E7490; --green:#10B981; --cyan:#06B6D4; --cyanL:#67E8F9;
+    --ink:#0f172a; --muted:#64748b; --bg:#F4F8FB; --card:#ffffff; --line:#e2e8f0;
+  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; font-family:Poppins, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; color:var(--ink); background:var(--bg); line-height:1.6; overflow-x:hidden; }
+  a { color:inherit; }
+  .wrap { max-width:1120px; margin:0 auto; padding:0 20px; }
+
+  /* Nav */
+  nav { position:sticky; top:0; z-index:20; background:rgba(11,31,58,.82); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid rgba(255,255,255,.08); }
+  nav .wrap { display:flex; align-items:center; justify-content:space-between; height:64px; }
+  .brand { display:flex; align-items:center; gap:10px; color:#fff; text-decoration:none; font-weight:800; font-size:20px; }
+  .brand img { width:36px; height:36px; border-radius:10px; }
+  .navlinks { display:flex; gap:22px; }
+  .navlinks a { color:#cbd5e1; text-decoration:none; font-size:14px; font-weight:500; }
+  .navlinks a:hover { color:#fff; }
+
+  /* Hero */
+  .hero { position:relative; color:#fff; background:
+      radial-gradient(800px 400px at 85% 10%, rgba(6,182,212,.35), transparent 60%),
+      radial-gradient(700px 400px at 0% 100%, rgba(16,185,129,.30), transparent 60%),
+      linear-gradient(160deg, var(--navy), var(--navy2) 55%, var(--teal)); overflow:hidden; }
+  .hero::before { content:""; position:absolute; inset:0; opacity:.07;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='white' stroke-width='1.5'%3E%3Crect x='22' y='22' width='36' height='36'/%3E%3Crect x='22' y='22' width='36' height='36' transform='rotate(45 40 40)'/%3E%3C/g%3E%3C/svg%3E"); }
+  .hero .wrap { position:relative; display:grid; grid-template-columns:1.1fr .9fr; gap:40px; align-items:center; padding-top:64px; padding-bottom:80px; }
+  .arabic { font-family:Amiri, serif; font-size:26px; color:var(--cyanL); margin:0 0 6px; }
+  .hero h1 { font-size:clamp(34px,5vw,56px); line-height:1.1; margin:0 0 18px; font-weight:800; letter-spacing:-.5px; }
+  .grad { background:linear-gradient(90deg, var(--cyanL), var(--green)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .hero p.lead { font-size:18px; color:#cbd5e1; margin:0 0 28px; max-width:540px; }
+  .cta { display:flex; flex-wrap:wrap; gap:12px; align-items:center; }
+  .btn { display:inline-flex; align-items:center; gap:10px; padding:14px 22px; border-radius:14px; font-weight:600; text-decoration:none; transition:transform .2s, box-shadow .2s; }
+  .btn:hover { transform:translateY(-2px); }
+  .btn-play { background:#000; color:#fff; border:1px solid rgba(255,255,255,.25); box-shadow:0 10px 30px rgba(0,0,0,.3); }
+  .btn-play small { display:block; font-size:10px; font-weight:500; opacity:.8; line-height:1; letter-spacing:.5px; }
+  .btn-play span { line-height:1.15; text-align:left; }
+  .btn-ghost { color:#fff; border:1px solid rgba(255,255,255,.3); }
+  .pills { display:flex; flex-wrap:wrap; gap:8px; margin-top:26px; }
+  .pill-new { background:#FCD34D !important; color:#1E1B4B !important; font-weight:700; text-decoration:none; border-color:#FCD34D !important; }
+  .pill { font-size:13px; padding:6px 12px; border-radius:999px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14); color:#e2e8f0; }
+
+  .phones { position:relative; height:560px; }
+  .phone { position:absolute; width:250px; border-radius:34px; padding:9px; background:linear-gradient(145deg,#1e293b,#020617); box-shadow:0 30px 60px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.08); }
+  .phone img { display:block; width:100%; border-radius:26px; }
+  .phones .phone { width:180px; --r:0deg; --x:0px; transform:translateX(var(--x)) rotate(var(--r)); animation:bob 6s ease-in-out infinite; }
+  .phone.f1 { left:calc(50% - 90px); top:70px; --x:-140px; --r:-14deg; z-index:1; animation-delay:-1s; }
+  .phone.f2 { left:calc(50% - 90px); top:20px; --x:-40px; --r:-5deg; z-index:3; animation-delay:-3s; }
+  .phone.f3 { left:calc(50% - 90px); top:30px; --x:70px; --r:5deg; z-index:4; animation-delay:-2s; }
+  .phone.f4 { left:calc(50% - 90px); top:80px; --x:175px; --r:14deg; z-index:2; animation-delay:-4s; }
+  @keyframes bob { 50% { transform:translateX(var(--x)) rotate(var(--r)) translateY(-14px); } }
+
+  /* Sections */
+  section { padding:84px 0; }
+  .eyebrow { color:var(--teal); font-weight:700; font-size:13px; letter-spacing:1.5px; text-transform:uppercase; margin:0 0 8px; }
+  h2 { font-size:clamp(28px,3.6vw,40px); line-height:1.15; margin:0 0 14px; color:var(--navy); font-weight:800; }
+  .sub { color:var(--muted); max-width:640px; margin:0 0 40px; font-size:17px; }
+  .center { text-align:center; } .center .sub { margin-left:auto; margin-right:auto; }
+
+  .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:22px; padding:26px; transition:transform .25s, box-shadow .25s, border-color .25s; }
+  .card:hover { transform:translateY(-6px); box-shadow:0 20px 40px rgba(14,116,144,.12); border-color:rgba(6,182,212,.4); }
+  .icon { width:52px; height:52px; border-radius:16px; display:grid; place-items:center; font-size:26px; margin-bottom:16px; }
+  .i1 { background:linear-gradient(135deg,#d1fae5,#a7f3d0); } .i2 { background:linear-gradient(135deg,#cffafe,#a5f3fc); }
+  .i3 { background:linear-gradient(135deg,#dbeafe,#bfdbfe); } .i4 { background:linear-gradient(135deg,#fef3c7,#fde68a); }
+  .i5 { background:linear-gradient(135deg,#ede9fe,#ddd6fe); } .i6 { background:linear-gradient(135deg,#fce7f3,#fbcfe8); }
+  .card h3 { margin:0 0 8px; font-size:19px; color:var(--navy); }
+  .card p { margin:0 0 12px; color:var(--muted); font-size:15px; }
+  .card ul { margin:0; padding:0; list-style:none; }
+  .card li { font-size:14px; padding:4px 0 4px 24px; position:relative; color:#334155; }
+  .card li::before { content:"✓"; position:absolute; left:0; color:var(--green); font-weight:800; }
+
+  /* Video */
+  .video-sec { padding-top:10px; }
+  .video { position:relative; max-width:960px; margin:0 auto; aspect-ratio:16/9; border-radius:24px; overflow:hidden; box-shadow:0 30px 60px rgba(11,31,58,.25); border:1px solid var(--line); background:#000; }
+  .video iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+
+  /* Spotlights */
+  .spot { display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; padding:30px 0; }
+  .spot + .spot { margin-top:30px; }
+  .spot.flip .spot-media { order:2; }
+  .spot-media { position:relative; display:flex; justify-content:center; padding:30px 0; }
+  .spot-media::before { content:""; position:absolute; width:340px; height:340px; border-radius:50%; top:50%; left:50%; transform:translate(-50%,-50%); filter:blur(10px); opacity:.55; }
+  .halal .spot-media::before { background:radial-gradient(circle, #a7f3d0, transparent 70%); }
+  .mosq .spot-media::before { background:radial-gradient(circle, #bfdbfe, transparent 70%); }
+  .kids .spot-media::before { background:radial-gradient(circle, #fde68a, transparent 70%); }
+  .spot-media .phone { position:relative; width:250px; }
+  .badge { position:absolute; z-index:2; background:#fff; border-radius:14px; padding:10px 14px; font-size:13px; font-weight:700; box-shadow:0 12px 30px rgba(15,23,42,.15); display:flex; align-items:center; gap:8px; animation:bob2 5s ease-in-out infinite; }
+  .badge i { font-style:normal; font-size:18px; }
+  .b-tl { top:4px; left:calc(50% - 210px); } .b-br { bottom:50px; right:calc(50% - 215px); animation-delay:-2.5s; }
+  @keyframes bob2 { 50% { transform:translateY(-8px); } }
+  .tag { display:inline-block; font-size:12px; font-weight:700; padding:4px 10px; border-radius:999px; margin-bottom:12px; }
+  .t-green { background:#d1fae5; color:#047857; } .t-blue { background:#dbeafe; color:#1d4ed8; } .t-amber { background:#fef3c7; color:#b45309; }
+  .spot h2 { margin-bottom:12px; }
+  .spot p.sub { margin-bottom:18px; }
+  .ticks { list-style:none; padding:0; margin:0 0 6px; display:grid; gap:10px; }
+  .ticks li { display:flex; gap:12px; align-items:flex-start; color:#334155; }
+  .ticks b { flex:0 0 32px; height:32px; border-radius:10px; display:grid; place-items:center; font-size:16px; }
+  .halal .ticks b { background:#d1fae5; } .mosq .ticks b { background:#dbeafe; } .kids .ticks b { background:#fef3c7; }
+  .status-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+  .st { font-size:13px; font-weight:700; padding:6px 12px; border-radius:999px; }
+  .st.ok { background:#d1fae5; color:#047857; } .st.dbt { background:#fef3c7; color:#b45309; } .st.hr { background:#fee2e2; color:#b91c1c; }
+  /* Kids mock screen */
+  .kscreen { border-radius:26px; overflow:hidden; background:#f8fafc; aspect-ratio:9/19.5; display:flex; flex-direction:column; }
+  .kbar { background:linear-gradient(135deg,var(--navy),var(--teal)); color:#fff; font-weight:700; padding:22px 16px 14px; font-size:15px; }
+  .kbody { padding:12px; display:grid; gap:9px; }
+  .khero { background:linear-gradient(135deg,#10B981,#06B6D4); color:#fff; border-radius:16px; padding:14px; font-weight:800; font-size:13px; line-height:1.5; }
+  .khero span { display:block; font-family:Amiri,serif; font-size:15px; font-weight:700; }
+  .klesson { background:#fff; border-radius:14px; padding:10px; display:flex; gap:10px; align-items:center; box-shadow:0 2px 8px rgba(15,23,42,.06); }
+  .klesson b { font-size:22px; }
+  .klesson div { font-size:12px; font-weight:700; color:var(--navy); line-height:1.3; }
+  .klesson small { display:block; font-weight:500; color:var(--muted); font-size:10.5px; }
+
+  .stories-wrap { margin-top:46px; }
+  .stories-wrap h3 { font-size:clamp(22px,2.6vw,30px); color:var(--navy); margin:0 0 22px; font-weight:800; }
+  .stories { display:grid; grid-template-columns:repeat(6,1fr); gap:14px; }
+  .story { margin:0; background:var(--card); border:1px solid var(--line); border-radius:18px; overflow:hidden; transition:transform .25s, box-shadow .25s; }
+  .story:hover { transform:translateY(-5px) rotate(-1deg); box-shadow:0 16px 30px rgba(124,58,237,.18); }
+  .story img { display:block; width:100%; aspect-ratio:400/260; object-fit:cover; }
+  .story figcaption { padding:8px 10px 10px; font-size:13px; font-weight:700; color:var(--navy); text-align:center; }
+  .kids .spot-media::after { content:""; }
+
+  /* Gallery */
+  .gallery-sec { background:linear-gradient(180deg, var(--navy), #0c2a48); color:#fff; }
+  .gallery-sec h2 { color:#fff; } .gallery-sec .sub { color:#94a3b8; } .gallery-sec .eyebrow { color:var(--cyanL); }
+  .gallery { display:flex; gap:22px; overflow-x:auto; padding:10px 20px 30px; scroll-snap-type:x mandatory; scrollbar-width:thin; }
+  .shot { flex:0 0 220px; scroll-snap-align:center; text-align:center; }
+  .shot .phone { position:static; width:220px; transform:none; animation:none; }
+  .shot span { display:block; margin-top:12px; font-size:14px; color:#cbd5e1; font-weight:500; }
+
+  /* More features */
+  .chips { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+  .chip { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:16px; display:flex; align-items:center; gap:12px; font-weight:600; color:var(--navy); font-size:15px; }
+  .chip b { font-size:24px; }
+
+  /* Privacy band */
+  .trust { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+  .trust div { text-align:center; padding:24px 16px; border-radius:20px; background:linear-gradient(160deg,#ecfeff,#f0fdf4); border:1px solid #ccfbf1; }
+  .trust strong { display:block; font-size:30px; }
+  .trust span { font-weight:600; color:var(--navy); }
+  .trust p { margin:4px 0 0; color:var(--muted); font-size:14px; }
+
+  .final { margin:0 20px; border-radius:30px; padding:56px 24px; text-align:center; color:#fff; background:linear-gradient(135deg,var(--teal),var(--green)); position:relative; overflow:hidden; }
+  .final h2 { color:#fff; } .final p { color:#ecfeff; max-width:560px; margin:0 auto 26px; }
+  .final img { width:84px; height:84px; border-radius:22px; box-shadow:0 12px 30px rgba(0,0,0,.25); margin-bottom:14px; }
+
+  /* Contact form */
+  .contact { display:grid; grid-template-columns:.9fr 1.1fr; gap:36px; align-items:start; background:var(--card); border:1px solid var(--line); border-radius:28px; padding:36px; box-shadow:0 20px 50px rgba(14,116,144,.08); }
+  .contact-points { list-style:none; padding:0; margin:0; }
+  .contact-points li { display:flex; gap:12px; align-items:center; padding:8px 0; color:#334155; font-size:15px; }
+  .contact-points b { width:40px; height:40px; flex:0 0 40px; border-radius:12px; display:grid; place-items:center; background:linear-gradient(135deg,#ecfeff,#d1fae5); }
+  .form { display:grid; gap:16px; }
+  .row2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .form label { display:grid; gap:6px; font-size:14px; font-weight:600; color:var(--navy); }
+  .form input, .form select, .form textarea { font:inherit; font-weight:400; font-size:15px; color:var(--ink); background:#f8fafc; border:1.5px solid var(--line); border-radius:12px; padding:12px 14px; width:100%; transition:border-color .2s, box-shadow .2s, background .2s; }
+  .form textarea { resize:vertical; min-height:120px; }
+  .form input:focus, .form select:focus, .form textarea:focus { outline:none; border-color:var(--cyan); background:#fff; box-shadow:0 0 0 4px rgba(6,182,212,.15); }
+  .form .bad { border-color:#ef4444; }
+  .hp { position:absolute; left:-9999px; width:1px; height:1px; opacity:0; }
+  .send { justify-content:center; border:0; cursor:pointer; color:#fff; font-size:16px; background:linear-gradient(135deg,var(--teal),var(--green)); box-shadow:0 12px 26px rgba(16,185,129,.3); }
+  .send:disabled { opacity:.6; cursor:wait; transform:none; }
+  .note { margin:0; font-size:14px; min-height:20px; }
+  .note.ok { color:#047857; font-weight:600; } .note.err { color:#b91c1c; font-weight:600; }
+
+  footer { padding:50px 0 40px; color:var(--muted); font-size:14px; }
+  footer .wrap { display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between; align-items:center; }
+  footer a { color:var(--teal); text-decoration:none; font-weight:500; }
+  footer .links { display:flex; flex-wrap:wrap; gap:18px; }
+
+  .reveal { opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in { opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity:1; transform:none; } .phone { animation:none !important; } }
+
+  @media (max-width:920px) {
+    .hero .wrap { grid-template-columns:1fr; padding-top:44px; }
+    .phones { height:470px; }
+    .grid { grid-template-columns:1fr 1fr; }
+    .chips, .trust { grid-template-columns:1fr 1fr; }
+    .navlinks { display:none; }
+    .contact { grid-template-columns:1fr; padding:26px; }
+    .spot { grid-template-columns:1fr; gap:10px; }
+    .stories { grid-template-columns:repeat(3,1fr); }
+    .spot.flip .spot-media { order:0; }
+  }
+  @media (max-width:600px) {
+    .wrap { padding:0 16px; }
+    .grid { grid-template-columns:1fr; }
+    .phones { height:360px; }
+    .phones .phone { width:150px; border-radius:24px; padding:6px; }
+    .phone.f1, .phone.f2, .phone.f3, .phone.f4 { left:calc(50% - 75px); }
+    .phone.f1 { --x:-120px; } .phone.f2 { --x:-45px; } .phone.f3 { --x:40px; } .phone.f4 { --x:115px; }
+    .phone img { border-radius:20px; }
+    section { padding:64px 0; }
+    .final { margin:0 16px; }
+    .row2 { grid-template-columns:1fr; }
+    .stories { grid-template-columns:repeat(2,1fr); gap:10px; }
+    .spot-media .phone { width:210px; }
+    .b-tl { left:8px; } .b-br { right:8px; }
+    .contact { padding:20px; border-radius:22px; }
+  }
+  .apps-grid { grid-template-columns:repeat(4,1fr); }
+  .appcard { display:flex; flex-direction:column; align-items:flex-start; }
+  .appicon { width:72px; height:72px; border-radius:18px; margin-bottom:14px; box-shadow:0 8px 20px rgba(11,31,58,.18); }
+  .appsub { color:var(--teal) !important; font-weight:700; margin:0 0 6px !important; }
+  .appbtn { margin-top:auto; padding:10px 16px; }
+  .storebtns { margin-top:auto; display:flex; flex-wrap:nowrap; gap:8px; }
+  .storebtns .btn { flex:1 1 0; min-width:0; justify-content:center; gap:6px; padding:8px 8px; font-size:14px; border-radius:12px; white-space:nowrap; }
+  .storebtns .btn svg { width:18px; height:20px; flex:none; }
+  .storebtns .btn small { font-size:8.5px; letter-spacing:.2px; }
+  @media (max-width:1000px) { .apps-grid { grid-template-columns:1fr 1fr; } }
+  @media (max-width:620px) { .apps-grid { grid-template-columns:1fr; } }
+  .plabel { position:absolute; left:50%; bottom:-30px; transform:translateX(-50%); white-space:nowrap; font-size:12px; font-weight:700; color:#fff; background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.22); padding:4px 10px; border-radius:999px; backdrop-filter:blur(6px); }
+  @media (max-width:620px) { .plabel { font-size:10px; padding:3px 7px; bottom:-24px; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#"><img src="./img/icon.png" alt="">DeenDost</a>
+    <div class="navlinks">
+      <a href="#apps">Our apps</a>
+      <a href="#features">Features</a>
+      <a href="#kids">Kids</a>
+      <a href="#video">Video</a>
+      <a href="#screens">Screens</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <p class="arabic">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p>
+      <h1>Your companion in <span class="grad">Deen</span>, wherever you are</h1>
+      <p class="lead">Accurate prayer times with adhan alarms, Qibla, nearby mosques with community jamaat times, a halal food scanner, the Quran and duas — all in one beautiful, free app.</p>
+      <div class="cta">
+        <a class="btn btn-play" href="https://play.google.com/store/apps/details?id=uk.deendost.deendost" target="_blank" rel="noopener">
+          <svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true"><path d="M1 1.5 14.5 14 1 26.5c-.6-.3-1-1-1-1.8V3.3c0-.8.4-1.5 1-1.8Z" fill="#00D7FE"/><path d="m19 9.6-4.5 4.4L1 1.5c.3-.2.7-.3 1.1-.3.4 0 .8.1 1.2.3L19 9.6Z" fill="#00F076"/><path d="M19 18.4 3.3 26.7c-.4.2-.8.3-1.2.3-.4 0-.8-.1-1.1-.3L14.5 14l4.5 4.4Z" fill="#FF3A44"/><path d="m24.2 12.1-5.2-2.5-4.5 4.4 4.5 4.4 5.2-2.5c1.2-.7 1.2-3.1 0-3.8Z" fill="#FFD500"/></svg>
+          <span><small>GET IT ON</small>Google Play</span>
+        </a>
+        <a class="btn btn-play" href="https://apps.apple.com/app/id6826016837" target="_blank" rel="noopener"><svg width="22" height="26" viewBox="0 0 384 512" aria-hidden="true"><path fill="#fff" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><span><small>Download on the</small>App Store</span></a>
+        <a class="btn btn-ghost" href="#features">Explore features ↓</a>
+      </div>
+      <div class="pills">
+        <a class="pill pill-new" href="#kids">🧒 New: Kids corner</a><span class="pill">🆓 Free</span><span class="pill">🚫 No ads</span><span class="pill">👤 No account needed</span><span class="pill">🌍 Works worldwide</span>
+      </div>
+    </div>
+    <div class="phones" aria-hidden="true">
+      <div class="phone f1"><img src="./img/hero_kids.jpg" alt=""><span class="plabel">DeenDost Kids</span></div>
+      <div class="phone f2"><img src="./img/01_prayers.jpg" alt=""><span class="plabel">DeenDost</span></div>
+      <div class="phone f4"><img src="./img/hero_scanner.jpg" alt=""><span class="plabel">Halal Scanner</span></div>
+      <div class="phone f3"><img src="./img/hero_salah.jpg" alt=""><span class="plabel">Salah</span></div>
+    </div>
+  </div>
+</header>
+
+<section id="features">
+  <div class="wrap">
+    <div class="center reveal">
+      <p class="eyebrow">Features</p>
+      <h2>Everything for your day, in one place</h2>
+      <p class="sub">From Fajr to Isha, from the supermarket aisle to the masjid — DeenDost keeps you connected to your Deen.</p>
+    </div>
+    <div class="grid">
+      <div class="card reveal"><div class="icon i1">🕌</div><h3>Prayer times &amp; adhan</h3><p>Start and end times for every salah, in any city in the world.</p>
+        <ul><li>Adhan alarms: 3 voices, short or full</li><li>Hanafi / Shafi'i Asr and calculation methods</li><li>Monthly timetable, today highlighted</li><li>Home-screen widget</li></ul></div>
+      <div class="card reveal"><div class="icon i2">🧭</div><h3>Qibla finder</h3><p>Find the direction of the Kaaba with confidence.</p>
+        <ul><li>True-north corrected compass</li><li>Step-by-step calibration guide</li><li>Map view with the line to Makkah</li></ul></div>
+      <div class="card reveal"><div class="icon i3">📍</div><h3>Mosques near you</h3><p>See masjids around you with directions.</p>
+        <ul><li>Community-confirmed jamaat times</li><li>Verified once enough people agree</li><li>Halal restaurants and butchers nearby</li></ul></div>
+      <div class="card reveal"><div class="icon i4">🛒</div><h3>Halal scanner</h3><p>Check a product before you buy it.</p>
+        <ul><li>Scan a barcode or photo the label</li><li>Every ingredient: OK, doubtful or haram</li><li>Clear reasons and E-number checks</li></ul></div>
+      <div class="card reveal"><div class="icon i5">📖</div><h3>Quran with recitation</h3><p>Read and listen to the complete Quran.</p>
+        <ul><li>Recitation by Sheikh Mishary Alafasy</li><li>Auto-scrolls to the verse being recited</li><li>Saved on your phone for offline listening</li></ul></div>
+      <div class="card reveal"><div class="icon i6">🤲</div><h3>Duas &amp; adhkar</h3><p>Daily duas for every moment of life.</p>
+        <ul><li>Arabic, transliteration, English and Urdu</li><li>99 Names of Allah with audio</li><li>Names of the Prophet ﷺ</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="apps" style="padding-top:20px">
+  <div class="wrap">
+    <div class="center reveal">
+      <p class="eyebrow">Our apps</p>
+      <h2>The DeenDost family of apps</h2>
+      <p class="sub">Get everything in DeenDost, or pick the app you need. All free, no ads.</p>
+    </div>
+    <div class="grid apps-grid">
+      <div class="card appcard reveal">
+        <img class="appicon" src="./img/apps/deendost.png" alt="DeenDost app icon" width="72" height="72" loading="lazy">
+        
+        <h3>DeenDost</h3><p class="appsub">Everything in one app</p><p>Prayer times, Azan alarms, Qibla, prayer tracker, mosques, halal scanner, Quran, duas and a kids corner.</p>
+        <div class="storebtns"><a class="btn btn-play" href="https://play.google.com/store/apps/details?id=uk.deendost.deendost" target="_blank" rel="noopener"><svg width="22" height="24" viewBox="0 0 26 28" aria-hidden="true"><path d="M1 1.5 14.5 14 1 26.5c-.6-.3-1-1-1-1.8V3.3c0-.8.4-1.5 1-1.8Z" fill="#00D7FE"/><path d="m19 9.6-4.5 4.4L1 1.5c.3-.2.7-.3 1.1-.3.4 0 .8.1 1.2.3L19 9.6Z" fill="#00F076"/><path d="M19 18.4 3.3 26.7c-.4.2-.8.3-1.2.3-.4 0-.8-.1-1.1-.3L14.5 14l4.5 4.4Z" fill="#FF3A44"/><path d="m24.2 12.1-5.2-2.5-4.5 4.4 4.5 4.4 5.2-2.5c1.2-.7 1.2-3.1 0-3.8Z" fill="#FFD500"/></svg><span><small>GET IT ON</small>Google Play</span></a><a class="btn btn-play" href="https://apps.apple.com/app/id6826016837" target="_blank" rel="noopener"><svg width="18" height="22" viewBox="0 0 384 512" aria-hidden="true"><path fill="#fff" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><span><small>Download on the</small>App Store</span></a></div>
+      </div>
+      <div class="card appcard reveal">
+        <img class="appicon" src="./img/apps/salah.png" alt="Salah app icon" width="72" height="72" loading="lazy">
+        <span class="tag" style="background:#DCFCE7;color:#047857">New</span>
+        <h3>Salah</h3><p class="appsub">Prayer times, Azan &amp; tracker</p><p>Accurate times for any city in the world, 3 Adhan voices (short or full), Qibla and a tracker with charts.</p>
+        <div class="storebtns"><a class="btn btn-play" href="https://play.google.com/store/apps/details?id=uk.deendost.salah" target="_blank" rel="noopener"><svg width="22" height="24" viewBox="0 0 26 28" aria-hidden="true"><path d="M1 1.5 14.5 14 1 26.5c-.6-.3-1-1-1-1.8V3.3c0-.8.4-1.5 1-1.8Z" fill="#00D7FE"/><path d="m19 9.6-4.5 4.4L1 1.5c.3-.2.7-.3 1.1-.3.4 0 .8.1 1.2.3L19 9.6Z" fill="#00F076"/><path d="M19 18.4 3.3 26.7c-.4.2-.8.3-1.2.3-.4 0-.8-.1-1.1-.3L14.5 14l4.5 4.4Z" fill="#FF3A44"/><path d="m24.2 12.1-5.2-2.5-4.5 4.4 4.5 4.4 5.2-2.5c1.2-.7 1.2-3.1 0-3.8Z" fill="#FFD500"/></svg><span><small>GET IT ON</small>Google Play</span></a><a class="btn btn-play" href="https://apps.apple.com/app/id6826016733" target="_blank" rel="noopener"><svg width="18" height="22" viewBox="0 0 384 512" aria-hidden="true"><path fill="#fff" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><span><small>Download on the</small>App Store</span></a></div>
+      </div>
+      <div class="card appcard reveal">
+        <img class="appicon" src="./img/apps/scanner.png" alt="Halal Scanner app icon" width="72" height="72" loading="lazy">
+        <span class="tag" style="background:#DCFCE7;color:#047857">New</span>
+        <h3>Halal Scanner</h3><p class="appsub">Is it halal? Scan and see</p><p>Scan a barcode or the ingredients, see why a product is halal, doubtful or haram, and find halal food near you.</p>
+        <div class="storebtns"><a class="btn btn-play" href="https://play.google.com/store/apps/details?id=uk.deendost.halalscanner" target="_blank" rel="noopener"><svg width="22" height="24" viewBox="0 0 26 28" aria-hidden="true"><path d="M1 1.5 14.5 14 1 26.5c-.6-.3-1-1-1-1.8V3.3c0-.8.4-1.5 1-1.8Z" fill="#00D7FE"/><path d="m19 9.6-4.5 4.4L1 1.5c.3-.2.7-.3 1.1-.3.4 0 .8.1 1.2.3L19 9.6Z" fill="#00F076"/><path d="M19 18.4 3.3 26.7c-.4.2-.8.3-1.2.3-.4 0-.8-.1-1.1-.3L14.5 14l4.5 4.4Z" fill="#FF3A44"/><path d="m24.2 12.1-5.2-2.5-4.5 4.4 4.5 4.4 5.2-2.5c1.2-.7 1.2-3.1 0-3.8Z" fill="#FFD500"/></svg><span><small>GET IT ON</small>Google Play</span></a><a class="btn btn-play" href="https://apps.apple.com/app/id6826016853" target="_blank" rel="noopener"><svg width="18" height="22" viewBox="0 0 384 512" aria-hidden="true"><path fill="#fff" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><span><small>Download on the</small>App Store</span></a></div>
+      </div>
+      <div class="card appcard reveal">
+        <img class="appicon" src="./img/apps/kids.png" alt="DeenDost Kids app icon" width="72" height="72" loading="lazy">
+        <span class="tag" style="background:#DCFCE7;color:#047857">New</span>
+        <h3>DeenDost Kids</h3><p class="appsub">Learn Islam the fun way</p><p>41 picture stories with quizzes, how to pray, daily duas and short surahs. No ads, no accounts.</p>
+        <div class="storebtns"><a class="btn btn-play" href="https://play.google.com/store/apps/details?id=uk.deendost.kids" target="_blank" rel="noopener"><svg width="22" height="24" viewBox="0 0 26 28" aria-hidden="true"><path d="M1 1.5 14.5 14 1 26.5c-.6-.3-1-1-1-1.8V3.3c0-.8.4-1.5 1-1.8Z" fill="#00D7FE"/><path d="m19 9.6-4.5 4.4L1 1.5c.3-.2.7-.3 1.1-.3.4 0 .8.1 1.2.3L19 9.6Z" fill="#00F076"/><path d="M19 18.4 3.3 26.7c-.4.2-.8.3-1.2.3-.4 0-.8-.1-1.1-.3L14.5 14l4.5 4.4Z" fill="#FF3A44"/><path d="m24.2 12.1-5.2-2.5-4.5 4.4 4.5 4.4 5.2-2.5c1.2-.7 1.2-3.1 0-3.8Z" fill="#FFD500"/></svg><span><small>GET IT ON</small>Google Play</span></a><a class="btn btn-play" href="https://apps.apple.com/app/id6826017058" target="_blank" rel="noopener"><svg width="18" height="22" viewBox="0 0 384 512" aria-hidden="true"><path fill="#fff" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><span><small>Download on the</small>App Store</span></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="video" class="video-sec">
+  <div class="wrap">
+    <div class="center reveal">
+      <p class="eyebrow">Watch</p>
+      <h2>See DeenDost in 30 seconds</h2>
+      <p class="sub">A quick tour of prayer times, Qibla, mosques, the halal checker, Quran, duas and more.</p>
+    </div>
+    <div class="video reveal">
+      <iframe src="https://www.youtube-nocookie.com/embed/mVLTKgJKtiY?rel=0" title="DeenDost app promo video" loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+<section id="spotlight" style="padding-top:10px">
+  <div class="wrap">
+    <div class="spot halal reveal">
+      <div class="spot-media">
+        <div class="badge b-tl"><i>✅</i>No haram found</div>
+        <div class="phone"><img src="./img/04_halal.jpg" alt="Halal and haram product checker" loading="lazy"></div>
+        <div class="badge b-br"><i>🔎</i>Barcode or label photo</div>
+      </div>
+      <div>
+        <span class="tag t-green">HALAL &amp; HARAM CHECKER</span>
+        <h2>Know what's in your food before you buy it</h2>
+        <p class="sub">Scan a barcode in the supermarket or take a photo of the ingredients. DeenDost checks every single ingredient and tells you why.</p>
+        <ul class="ticks">
+          <li><b>📷</b><span>Barcode scan and on-device label reading</span></li>
+          <li><b>🧾</b><span>Ingredient-by-ingredient table with clear reasons</span></li>
+          <li><b>🧪</b><span>E-numbers, gelatine, alcohol, rennet and more checked</span></li>
+          <li><b>🏷️</b><span>Browse hundreds of brands and products available in the UK</span></li>
+        </ul>
+        <div class="status-row"><span class="st ok">✓ OK</span><span class="st dbt">? Doubtful</span><span class="st hr">✕ Haram</span></div>
+      </div>
+    </div>
+
+    <div class="spot mosq flip reveal">
+      <div class="spot-media">
+        <div class="badge b-tl"><i>📍</i>Mosques near you</div>
+        <div class="phone"><img src="./img/03_mosques.jpg" alt="Nearby mosques map" loading="lazy"></div>
+        <div class="badge b-br"><i>👥</i>Jamaat confirmed by 3 people</div>
+      </div>
+      <div>
+        <span class="tag t-blue">NEARBY MOSQUES</span>
+        <h2>Never miss jamaat, wherever you are</h2>
+        <p class="sub">Travelling for work or visiting family? See the masjids around you on a map, with jamaat times kept up to date by the community.</p>
+        <ul class="ticks">
+          <li><b>🗺️</b><span>Map and list of nearby mosques with distance and directions</span></li>
+          <li><b>⏰</b><span>Jamaat times suggested and confirmed by local worshippers</span></li>
+          <li><b>✔️</b><span>Times become verified once enough people agree</span></li>
+          <li><b>🍽️</b><span>Find halal restaurants and butchers close by too</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spot kids reveal" id="kids">
+      <div class="spot-media">
+        <div class="badge b-tl"><i>⭐</i>Quizzes &amp; stars</div>
+        <div class="phone"><img src="./img/09_kids.jpg" alt="DeenDost Kids corner" loading="lazy"></div>
+        <div class="badge b-br"><i>🇵🇰</i>English &amp; Urdu</div>
+      </div>
+      <div>
+        <span class="tag t-amber">NEW · KIDS CORNER</span>
+        <h2>Learn Islam the fun way</h2>
+        <p class="sub">A bright, playful space where children learn the basics of Islam with pictures, stories and quizzes — perfect to explore together as a family.</p>
+        <ul class="ticks">
+          <li><b>📚</b><span>12 illustrated stories — Allah, Ramadan, Eid, Qurbani, Hajj and more — each with a quiz and a star to earn</span></li>
+          <li><b>🧎</b><span>Learn Salah step by step, with a picture for every position and what to recite</span></li>
+          <li><b>💎</b><span>12 Jewels: the 6 Kalimas, Iman-e-Mujmal &amp; Mufassal, Ayatul Kursi, Dua-e-Qunoot, Durood-e-Ibrahim</span></li>
+          <li><b>📖</b><span>Short surahs and the 4 Quls with recitation — each ayah lights up, with repeat for memorising</span></li>
+          <li><b>💡</b><span>A new "Did you know?" fact every day</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="stories-wrap reveal">
+      <p class="eyebrow center">Story time</p>
+      <h3 class="center">12 picture stories for little Muslims</h3>
+      <div class="stories"><figure class="story"><img src="./img/kids/islam.svg" alt="What is Islam? story picture" loading="lazy"><figcaption>What is Islam?</figcaption></figure><figure class="story"><img src="./img/kids/allah.svg" alt="Who is Allah? story picture" loading="lazy"><figcaption>Who is Allah?</figcaption></figure><figure class="story"><img src="./img/kids/prophet.svg" alt="Prophet Muhammad ﷺ story picture" loading="lazy"><figcaption>Prophet Muhammad ﷺ</figcaption></figure><figure class="story"><img src="./img/kids/quran.svg" alt="The Holy Quran story picture" loading="lazy"><figcaption>The Holy Quran</figcaption></figure><figure class="story"><img src="./img/kids/ramadan.svg" alt="Ramadan story picture" loading="lazy"><figcaption>Ramadan</figcaption></figure><figure class="story"><img src="./img/kids/eid_fitr.svg" alt="Eid al-Fitr story picture" loading="lazy"><figcaption>Eid al-Fitr</figcaption></figure><figure class="story"><img src="./img/kids/qurbani.svg" alt="Eid al-Adha & Qurbani story picture" loading="lazy"><figcaption>Eid al-Adha & Qurbani</figcaption></figure><figure class="story"><img src="./img/kids/hajj.svg" alt="Hajj story picture" loading="lazy"><figcaption>Hajj</figcaption></figure><figure class="story"><img src="./img/kids/shab_e_barat.svg" alt="Shab-e-Barat story picture" loading="lazy"><figcaption>Shab-e-Barat</figcaption></figure><figure class="story"><img src="./img/kids/muharram.svg" alt="Muharram & Ashura story picture" loading="lazy"><figcaption>Muharram & Ashura</figcaption></figure><figure class="story"><img src="./img/kids/qadr.svg" alt="Laylat al-Qadr story picture" loading="lazy"><figcaption>Laylat al-Qadr</figcaption></figure><figure class="story"><img src="./img/kids/jumuah.svg" alt="Jumu'ah story picture" loading="lazy"><figcaption>Jumu'ah</figcaption></figure></div>
+    </div>
+  </div>
+</section>
+
+<section id="screens" class="gallery-sec">
+  <div class="wrap center reveal">
+    <p class="eyebrow">Take a look</p>
+    <h2>Beautiful, simple, made with care</h2>
+    <p class="sub">Swipe through the app.</p>
+  </div>
+  <div class="gallery">
+    <div class="shot"><div class="phone"><img src="./img/09_kids.jpg" alt="Kids corner screen" loading="lazy"></div><span>Kids corner ✨</span></div>
+    <div class="shot"><div class="phone"><img src="./img/10_stories.jpg" alt="Kids stories screen" loading="lazy"></div><span>Stories &amp; quizzes</span></div>
+    <div class="shot"><div class="phone"><img src="./img/11_salah.jpg" alt="Learn Salah with pictures screen" loading="lazy"></div><span>Salah with pictures</span></div>
+    <div class="shot"><div class="phone"><img src="./img/01_prayers.jpg" alt="Prayer times screen" loading="lazy"></div><span>Prayer times</span></div>
+    <div class="shot"><div class="phone"><img src="./img/02_qibla.jpg" alt="Qibla finder screen" loading="lazy"></div><span>Qibla finder</span></div>
+    <div class="shot"><div class="phone"><img src="./img/03_mosques.jpg" alt="Nearby mosques screen" loading="lazy"></div><span>Nearby mosques</span></div>
+    <div class="shot"><div class="phone"><img src="./img/04_halal.jpg" alt="Halal checker screen" loading="lazy"></div><span>Halal checker</span></div>
+    <div class="shot"><div class="phone"><img src="./img/06_quran.jpg" alt="Quran screen" loading="lazy"></div><span>Quran</span></div>
+    <div class="shot"><div class="phone"><img src="./img/07_duas.jpg" alt="Duas screen" loading="lazy"></div><span>Duas &amp; adhkar</span></div>
+    <div class="shot"><div class="phone"><img src="./img/08_names.jpg" alt="99 Names screen" loading="lazy"></div><span>99 Names of Allah</span></div>
+    <div class="shot"><div class="phone"><img src="./img/05_more.jpg" alt="More tools screen" loading="lazy"></div><span>More tools</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="center reveal">
+      <p class="eyebrow">And much more</p>
+      <h2>Tools for the whole family</h2>
+      <p class="sub">Helpful extras for worship, learning and life events.</p>
+    </div>
+    <div class="chips reveal">
+      <div class="chip"><b>📿</b>Tasbih counter</div>
+      <div class="chip"><b>✅</b>Prayer tracker &amp; charts</div>
+      <div class="chip"><b>🔔</b>Full Adhan alarms</div>
+      <div class="chip"><b>💧</b>Wudu &amp; Salah guide</div>
+      <div class="chip"><b>🕊️</b>Janazah guide</div>
+      <div class="chip"><b>🌙</b>Islamic events</div>
+      <div class="chip"><b>🌍</b>244 countries</div>
+      <div class="chip"><b>🧒</b>Kids corner</div>
+      <div class="chip"><b>🇵🇰</b>Urdu guides</div>
+      <div class="chip"><b>🌗</b>Dark mode</div>
+      <div class="chip"><b>📶</b>Works offline</div>
+    </div>
+  </div>
+</section>
+
+<section id="privacy" style="padding-top:20px">
+  <div class="wrap">
+    <div class="center reveal">
+      <p class="eyebrow">Privacy first</p>
+      <h2>Your Deen, your data</h2>
+      <p class="sub">DeenDost keeps as much as possible on your phone. <a href="./privacy/" style="color:var(--teal)">Read our privacy policy</a>.</p>
+    </div>
+    <div class="trust reveal">
+      <div><strong>🚫</strong><span>No ads</span><p>Nothing to distract you from your salah.</p></div>
+      <div><strong>👤</strong><span>Guest mode</span><p>Use everything without an account.</p></div>
+      <div><strong>📱</strong><span>On your phone</span><p>Settings, tracker and favourites stay local.</p></div>
+      <div><strong>🔒</strong><span>Never sold</span><p>We don't sell or share your data.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="padding-top:20px">
+  <div class="final reveal">
+    <img src="./img/icon.png" alt="DeenDost logo">
+    <h2>Download DeenDost today</h2>
+    <p>Free for every Muslim, wherever you are. Share it with your family and friends — may Allah reward you.</p>
+    <div class="cta" style="justify-content:center">
+      <a class="btn btn-play" href="https://play.google.com/store/apps/details?id=uk.deendost.deendost" target="_blank" rel="noopener"><span><small>GET IT ON</small>Google Play</span></a>
+      <a class="btn btn-play" href="https://apps.apple.com/app/id6826016837" target="_blank" rel="noopener"><span><small>Download on the</small>App Store</span></a>
+      <a class="btn btn-ghost" href="#contact-form">✉️ Contact us</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact-form" style="padding-top:20px">
+  <div class="wrap">
+    <div class="contact reveal">
+      <div class="contact-info">
+        <p class="eyebrow">Contact us</p>
+        <h2>We'd love to hear from you</h2>
+        <p class="sub" style="margin-bottom:24px">Questions, a mosque time to fix, a halal product to check, an idea or a bug — send us a message and we'll reply by email, in shā' Allāh.</p>
+        <ul class="contact-points">
+          <li><b>🕌</b><span>Tell us the mosque name and town for jamaat time fixes</span></li>
+          <li><b>🛒</b><span>Include the barcode for product questions</span></li>
+        </ul>
+      </div>
+      <form id="cform" class="form" novalidate>
+        <div class="row2">
+          <label>Your name<input name="name" type="text" maxlength="100" autocomplete="name" required></label>
+          <label>Email address<input name="email" type="email" maxlength="200" autocomplete="email" required></label>
+        </div>
+        <label>Topic
+          <select name="topic" required>
+            <option>General question</option>
+            <option>Prayer times</option>
+            <option>Mosque or jamaat times</option>
+            <option>Halal product</option>
+            <option>Bug report</option>
+            <option>Feature idea</option>
+            <option>Account deletion</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <label>Message<textarea name="message" rows="5" maxlength="3000" required placeholder="How can we help?"></textarea></label>
+        <input class="hp" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button class="btn send" type="submit">Send message</button>
+        <p class="note" id="cstatus" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>© 2026 Best4Use · DeenDost</div>
+    <div class="links">
+      <a href="./privacy/">Privacy policy</a>
+      <a href="./delete-account/">Delete your account</a>
+      <a href="#contact-form">Contact us</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { threshold: 0.12 });
+    els.forEach(function (e) { io.observe(e); });
+  })();
+
+  // Contact form: saved to Firestore (dd_contact). Rules allow create only; admins read them.
+  (function () {
+    var form = document.getElementById('cform');
+    var status = document.getElementById('cstatus');
+    var url = 'https://firestore.googleapis.com/v1/projects/student-hub-3497b/databases/(default)/documents/dd_contact'
+      + '?key=AIzaSyD4HBbD2Hpwtfe6bItW_lG1S6jXl-uUDyY';
+    function say(text, cls) { status.textContent = text; status.className = 'note ' + (cls || ''); }
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var f = form.elements;
+      if (f.website.value) return; // bots fill the hidden field
+      var data = {
+        name: f.name.value.trim(), email: f.email.value.trim(),
+        topic: f.topic.value, message: f.message.value.trim(), source: 'website'
+      };
+      var bad = [];
+      if (!data.name) bad.push(f.name);
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(data.email)) bad.push(f.email);
+      if (data.message.length < 5) bad.push(f.message);
+      [f.name, f.email, f.message].forEach(function (el) { el.classList.toggle('bad', bad.indexOf(el) >= 0); });
+      if (bad.length) { say('Please fill in your name, a valid email and a message.', 'err'); bad[0].focus(); return; }
+      var fields = {};
+      Object.keys(data).forEach(function (k) { fields[k] = { stringValue: data[k] }; });
+      fields.sentAt = { timestampValue: new Date().toISOString() };
+      var btn = form.querySelector('.send');
+      btn.disabled = true; say('Sending…');
+      fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ fields: fields }) })
+        .then(function (r) { if (!r.ok) throw new Error(r.status); })
+        .then(function () { form.reset(); say('JazakAllahu khayran! Your message has been sent — we will reply by email.', 'ok'); })
+        .catch(function () { say('Sorry, your message could not be sent. Please check your connection and try again.', 'err'); })
+        .then(function () { btn.disabled = false; });
+    });
+  })();
+</script>
+</body>
+</html>
