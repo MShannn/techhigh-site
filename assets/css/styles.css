@@ -299,6 +299,7 @@ h2 { font-size: clamp(32px, 4vw, 48px); font-weight: 700; }
 
 .panel__art.art--qr { background: radial-gradient(circle at 50% 0, rgba(79, 70, 229, .5), transparent 70%), var(--bg); }
 .panel__art.art--expense { background: radial-gradient(circle at 50% 0, rgba(204, 68, 103, .45), transparent 70%), var(--bg); }
+.panel__art.art--smash { background: radial-gradient(circle at 50% 0, rgba(244, 114, 182, .45), transparent 70%), var(--bg); }
 .panel__art.art--store { background: radial-gradient(circle at 50% 0, rgba(124, 92, 255, .4), transparent 70%), var(--bg); }
 .phone--flat { border: 0; border-radius: 18px 18px 0 0; }
 .products__all { text-align: center; margin: 32px 0 0; }
