@@ -68,9 +68,10 @@ p { margin: 0 0 1em; }
 .nav { position: fixed; inset: 0 0 auto; z-index: 50; transition: background .3s, border-color .3s; border-bottom: 1px solid transparent; }
 .nav.is-scrolled { background: rgba(7, 11, 26, .75); backdrop-filter: blur(14px); border-color: var(--border); }
 .nav__inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
-.logo { display: inline-flex; align-items: center; gap: 8px; font-family: "Bricolage Grotesque", var(--display); font-size: 24px; font-weight: 800; letter-spacing: -0.05em; color: #fff; }
-.logo__mark { width: 34px; height: 34px; transition: transform .3s ease; }
-.logo:hover .logo__mark { transform: translateY(-2px); }
+.logo { display: inline-flex; align-items: center; gap: 10px; font-family: "Bricolage Grotesque", var(--display); font-size: 24px; font-weight: 800; letter-spacing: -0.05em; color: #fff; }
+.logo b { font-weight: inherit; padding-right: .08em; background: linear-gradient(100deg, #a08bff, var(--cyan)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.logo__mark { width: 36px; height: 36px; flex: none; filter: drop-shadow(0 6px 14px rgba(95, 107, 255, .45)); transition: transform .3s ease, filter .3s ease; }
+.logo:hover .logo__mark { transform: translateY(-2px); filter: drop-shadow(0 10px 20px rgba(34, 211, 238, .5)); }
 .nav__links { display: flex; align-items: center; gap: 32px; font-size: 15px; color: var(--muted); }
 .nav__links a:not(.btn):hover { color: var(--text); }
 .nav__links .btn { color: #fff; }

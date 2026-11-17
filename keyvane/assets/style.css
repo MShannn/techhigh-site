@@ -940,3 +940,6 @@ th { font-weight: 600; color: var(--muted); font-size: 0.85rem; text-transform: 
 .os-card .os-body h3 { padding-right: 6.5rem; }
 .os-link { display: inline-block; margin-top: .7rem; font-weight: 600; font-size: .92rem; text-decoration: none; }
 .os-link:hover { text-decoration: underline; }
+.by-techhigh { display: inline-flex; align-items: center; gap: 8px; margin-top: .75rem; color: var(--muted); text-decoration: none; font-size: .88rem; }
+.by-techhigh img { border-radius: 6px; flex: none; }
+.by-techhigh:hover { color: var(--text); }
