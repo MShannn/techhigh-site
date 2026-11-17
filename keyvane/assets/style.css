@@ -938,3 +938,5 @@ th { font-weight: 600; color: var(--muted); font-size: 0.85rem; text-transform: 
 .os-card.now .os-status { color: var(--success); background: color-mix(in srgb, var(--success) 14%, transparent); }
 .os-card.soon .os-status { color: var(--cyan-text); background: color-mix(in srgb, var(--cyan) 14%, transparent); }
 .os-card .os-body h3 { padding-right: 6.5rem; }
+.os-link { display: inline-block; margin-top: .7rem; font-weight: 600; font-size: .92rem; text-decoration: none; }
+.os-link:hover { text-decoration: underline; }
