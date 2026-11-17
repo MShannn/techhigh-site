@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Keyvane — Your keys. Your cloud. Nobody else.</title>
-  <meta name="description" content="Keyvane is the end-to-end encrypted client-account vault for developers, freelancers and agencies. Logins, API keys and 2FA, encrypted on your device and stored in your own cloud.">
+  <meta name="description" content="Keyvane is the end-to-end encrypted client-account vault for developers, freelancers and agencies. Logins, API keys and 2FA, encrypted on your device and stored where you choose: the device, iCloud Drive, Google Drive, Dropbox, OneDrive or your own storage.">
   <meta name="color-scheme" content="dark light">
   <meta name="theme-color" content="#0E0B1F" media="(prefers-color-scheme: dark)">
   <meta name="theme-color" content="#F6F6FC" media="(prefers-color-scheme: light)">
@@ -14,6 +14,9 @@
   <meta property="og:description" content="The end-to-end encrypted client-account vault for developers and agencies. Stored in your own cloud.">
   <meta property="og:url" content="https://techhigh.co.uk/keyvane/">
   <meta property="og:site_name" content="Keyvane by TechHigh">
+  <meta property="og:image" content="https://techhigh.co.uk/keyvane/assets/img/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="apple-touch-icon" href="assets/img/icon-192.png">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,9 +33,10 @@
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span class="sr-only">Menu</span><span class="nav-toggle-bar" aria-hidden="true"></span></button>
       <nav id="site-nav" class="site-nav" aria-label="Main">
         <ul>
+          <li><a href="#screens">App</a></li>
           <li><a href="#features">Features</a></li>
           <li><a href="#storage">Storage</a></li>
-          <li><a href="#organisations">Teams</a></li>
+          <li><a href="#autofill">Autofill</a></li>
           <li><a href="security.html">Security</a></li>
           <li><a href="#pricing">Pricing</a></li>
           <li><a href="#faq">FAQ</a></li>
@@ -50,34 +54,57 @@
         <div class="hero-copy">
           <span class="eyebrow">A TechHigh product</span>
           <h1>Your keys. <span class="gradient-text">Your cloud.</span> Nobody else.</h1>
-          <p class="lead">Keyvane is the client-account vault for developers, freelancers and agencies. Every client login, API key and 2FA code is encrypted on your device and stored wherever you choose — your own Google Drive, iCloud, Dropbox, server, or just the device.</p>
+          <p class="lead">Keyvane is the client-account vault for developers, freelancers and agencies. Every client login, API key and 2FA code is encrypted on your device and stored wherever you choose — your own iCloud Drive, Google Drive, Dropbox or OneDrive, your own WebDAV or S3 storage, or just the device. TechHigh never receives your vault.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#download">Download</a>
-            <a class="btn btn-secondary" href="#how">How it works</a>
+            <a class="btn btn-primary" href="#download">Get Keyvane</a>
+            <a class="btn btn-secondary" href="#screens">See the app</a>
           </div>
-          <p class="hero-note">Android · iOS · macOS · Windows · Linux · Web · Browser extension · CLI</p>
+          <ul class="trust-row" aria-label="Highlights">
+            <li>End-to-end encrypted</li>
+            <li>Works offline</li>
+            <li>No tracking</li>
+            <li>3 days free</li>
+          </ul>
+          <p class="hero-note">iPhone · iPad · Mac · Android</p>
         </div>
-        <div class="hero-visual" aria-hidden="true">
-          <div class="mock">
-            <div class="mock-side">
-              <h4>Clients</h4>
-              <ul>
-                <li class="active"><span class="mock-dot"></span>Acme Ltd</li>
-                <li><span class="mock-dot c2"></span>Northwind</li>
-                <li><span class="mock-dot c3"></span>Bluebird Studio</li>
-              </ul>
-            </div>
-            <div class="mock-main">
-              <p class="mock-crumb">Acme Ltd › Shop App › <strong>Production</strong></p>
-              <ul>
-                <li><div><div class="name">Firebase</div><div class="sub">Owner: client · acme-prod</div></div><span class="mock-tag ok">Synced</span></li>
-                <li><div><div class="name">Play Console</div><div class="sub">2FA: Sarah's iPhone · backup codes in safe</div></div><span class="mock-tag cyan">TOTP 28s</span></li>
-                <li><div><div class="name">Apple Developer</div><div class="sub">Membership renews 12 Mar 2027</div></div><span class="mock-tag warn">Reminder</span></li>
-                <li><div><div class="name">Stripe API key</div><div class="sub">Staging and production</div></div><span class="mock-tag">.env</span></li>
-              </ul>
-            </div>
-          </div>
+        <div class="hero-visual">
+          <figure class="device-mac">
+            <div class="window-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+            <img src="assets/img/mac-vault.jpg" width="1600" height="1000" alt="Keyvane on Mac: client groups in the sidebar, the item list, and a Google Workspace login with a live 2FA code">
+          </figure>
+          <figure class="device-phone">
+            <img src="assets/img/phone-1-vault.jpg" width="600" height="1304" alt="Keyvane on iPhone: all items with production and staging tags">
+          </figure>
         </div>
+      </div>
+    </section>
+
+    <!-- Proof strip -->
+    <section class="proof" aria-label="How Keyvane protects your data">
+      <div class="container proof-inner">
+        <div><strong>Argon2id</strong><span>+ 160-bit Secret Key</span></div>
+        <div><strong>XChaCha20-Poly1305</strong><span>encrypted on your device</span></div>
+        <div><strong>0 bytes</strong><span>of your vault sent to us</span></div>
+        <div><strong>10 storage options</strong><span>your cloud, your choice</span></div>
+      </div>
+    </section>
+
+    <!-- Screens -->
+    <section class="section" id="screens">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">The app</span>
+          <h2>Every client account, one tap away</h2>
+          <p>Logins, API keys, 2FA codes and expiry dates, grouped by client and environment. Swipe through the real app.</p>
+        </div>
+      </div>
+      <div class="gallery" tabindex="0" aria-label="App screenshots, scroll sideways">
+        <figure><img src="assets/img/phone-1-vault.jpg" loading="lazy" width="600" height="1304" alt="All items, tagged PROD and STAG, with an expiry warning"><figcaption>Everything by client</figcaption></figure>
+        <figure><img src="assets/img/phone-2-new_password.jpg" loading="lazy" width="600" height="1304" alt="Creating a new password with the generator"><figcaption>Strong passwords in one tap</figcaption></figure>
+        <figure><img src="assets/img/phone-3-types.jpg" loading="lazy" width="600" height="1304" alt="Templates for Firebase, Play Console, API keys and more"><figcaption>15 templates for client work</figcaption></figure>
+        <figure><img src="assets/img/phone-4-share.jpg" loading="lazy" width="600" height="1304" alt="Sharing a single login after a biometric check"><figcaption>Share one login safely</figcaption></figure>
+        <figure><img src="assets/img/phone-5-storage.jpg" loading="lazy" width="600" height="1304" alt="Choosing where the vault is stored"><figcaption>Store it in your own cloud</figcaption></figure>
+        <figure><img src="assets/img/phone-6-plans.jpg" loading="lazy" width="600" height="1304" alt="Basic and Pro plans with a 3-day free trial"><figcaption>3 days free</figcaption></figure>
       </div>
     </section>
 
@@ -98,7 +125,7 @@
           <article class="card">
             <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div>
             <h3>Only you hold the keys</h3>
-            <p>Encrypted on your device before anything is saved. Storage providers, and TechHigh, only ever receive scrambled bytes.</p>
+            <p>Encrypted on your device before anything is saved. TechHigh never receives your vault, and your storage provider only ever holds an encrypted file.</p>
           </article>
           <article class="card">
             <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16a4 4 0 010-8 6 6 0 0111.5-1.5A4.5 4.5 0 0118 16z"/><path d="M12 12v8M9 17l3 3 3-3"/></svg></div>
@@ -124,7 +151,7 @@
           </li>
           <li>
             <h3>Your device makes a Secret Key</h3>
-            <p>A long random code, kept in your device's keychain and printed on your Emergency Kit. It never goes in the vault file and is never uploaded.</p>
+            <p>A long random code, kept in your device's keychain and printed on your Emergency Kit. On Apple devices it is also saved in your iCloud Keychain, so a new iPhone, iPad or Mac only asks for your master password. It never goes in the vault file and is never sent to TechHigh or to your storage provider.</p>
           </li>
           <li>
             <h3>Both are turned into an encryption key</h3>
@@ -132,7 +159,7 @@
           </li>
           <li>
             <h3>The vault is sealed before it leaves</h3>
-            <p>Everything is encrypted with XChaCha20-Poly1305 on your device. Only then is the file saved to your storage.</p>
+            <p>Everything is encrypted with XChaCha20-Poly1305 on your device. Only then is the file saved to the storage you chose.</p>
           </li>
         </ol>
         <div class="callout">
@@ -148,24 +175,25 @@
         <div class="section-head">
           <span class="eyebrow">Storage</span>
           <h2>Keep the vault where you already keep your files</h2>
-          <p>You choose at sign-up and can move any time. Keyvane only shows the options your platform supports. Every option receives the same encrypted file.</p>
+          <p>You choose at sign-up and can move any time. Keyvane only shows the options your platform supports. Every option receives the same file, encrypted on your device before upload, and your provider's own privacy policy applies to it. Google Drive access is limited to a hidden app-data folder and Dropbox and OneDrive access to their Apps/Keyvane folder, so Keyvane cannot see your other files.</p>
         </div>
         <ul class="chips">
-          <li><strong>Device only</strong><span>No cloud at all</span></li>
-          <li><strong>Google Drive</strong><span>Hidden app folder</span></li>
+          <li><strong>This device only</strong><span>No cloud at all</span></li>
           <li><strong>iCloud Drive</strong><span>Apple devices</span></li>
-          <li><strong>Dropbox</strong><span>App folder</span></li>
-          <li><strong>OneDrive</strong><span>Personal or work</span></li>
+          <li><strong>Google Drive</strong><span>Hidden app-data folder only</span></li>
+          <li><strong>Dropbox</strong><span>Apps/Keyvane folder only</span></li>
+          <li><strong>Device to device</strong><span>Over local Wi-Fi, QR pairing</span></li>
+          <li><strong>OneDrive</strong><span>Apps/Keyvane folder only</span></li>
+        </ul>
+        <h3>Advanced</h3>
+        <ul class="chips">
           <li><strong>WebDAV</strong><span>Nextcloud and others</span></li>
           <li><strong>S3-compatible</strong><span>AWS, R2, B2, MinIO…</span></li>
           <li><strong>Your own Firebase</strong><span>Your project, your rules</span></li>
-          <li><strong>A file you choose</strong><span>USB, Syncthing, NAS</span></li>
-          <li><strong>Device to device</strong><span>Over Wi-Fi, QR pairing</span></li>
-          <li><strong>Your own server</strong><span>Self-hosted Keyvane Cloud</span></li>
-          <li><strong>Keyvane Cloud</strong><span>Optional, still end-to-end encrypted</span></li>
+          <li><strong>A synced folder</strong><span>Desktop: Syncthing, NAS, USB</span></li>
         </ul>
         <div class="callout info">
-          <p><strong>Local-first.</strong> The vault opens, edits and autofills offline. Sync merges changes from every device and keeps a history, so nothing is lost when two devices edit the same item.</p>
+          <p><strong>Local-first.</strong> There is no Keyvane server in the middle: your device talks directly to the storage you chose. The vault opens, edits and autofills offline. Sync merges changes from every device and keeps a history, so nothing is lost when two devices edit the same item.</p>
         </div>
       </div>
     </section>
@@ -196,44 +224,46 @@
             <p>Developer memberships, signing certificates, API keys, domains: set an expiry date and get reminded before it bites.</p>
           </article>
           <article class="card">
-            <h3>Handover pack</h3>
+            <h3>Client handover pack</h3>
             <p>When a project ends, export an encrypted pack for the client with just their accounts, plus a rotate-and-revoke checklist. History never travels with it.</p>
           </article>
           <article class="card">
+            <h3>Share a single login</h3>
+            <p>Need to send one login to a colleague or client? After a biometric check, share its username, password and website as plain text through your phone's share sheet, or copy it. You choose the app it goes to.</p>
+          </article>
+          <article class="card">
+            <h3>Breach check</h3>
+            <p>Optionally check your passwords against Have I Been Pwned. Only the first 5 characters of each password's SHA-1 hash leave your device; the match is made on the device.</p>
+          </article>
+          <article class="card">
             <h3>Developer tools</h3>
-            <p>Password, passphrase and API-key generator. Copy or export <code>.env</code> files. Attach certificates, keystores and service-account JSON. The <code>kv</code> command line and an SSH agent.</p>
+            <p>Password, passphrase and API-key generator. Copy or export <code>.env</code> files. Attach certificates, keystores and service-account JSON (Pro). The <code>kv</code> command line (Pro).</p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Organisations -->
-    <section class="section" id="organisations">
+    <!-- Autofill -->
+    <section class="section" id="autofill">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">Teams and agencies</span>
-          <h2>Organisations: share with people, not with the server</h2>
-          <p>Companies keep shared credentials in <strong>collections</strong>, usually one per client, and decide exactly who can open each one. Each person's personal vault stays private and is never visible to the organisation.</p>
+          <span class="eyebrow">Autofill</span>
+          <h2>Fill logins where you type them</h2>
+          <p>Keyvane plugs into the autofill system built into your phone or Mac, so you rarely need to open the app to sign in.</p>
         </div>
         <div class="grid grid-2">
           <article class="card">
-            <h3>Collections and roles</h3>
-            <p>Owner, admin, manager, member and guest roles. Per-collection permissions: autofill only, view, edit or manage. Guests get an end date and lose access automatically.</p>
+            <h3>Android</h3>
+            <p>Keyvane works as an Autofill service and with Credential Manager. It fills and saves passwords in apps and browsers, and supports passkeys on Android 14 and later.</p>
           </article>
           <article class="card">
-            <h3>Verified invites</h3>
-            <p>New members read five verification words to an admin over a call before they receive any keys. That is what stops anyone, including the server, slipping in their own key.</p>
-          </article>
-          <article class="card">
-            <h3>Offboarding with key rotation</h3>
-            <p>Remove a person in one step. Keyvane replaces the key of every collection they could open and lists the passwords they saw, so you can change them at each service.</p>
-          </article>
-          <article class="card">
-            <h3>Encrypted activity log and policies</h3>
-            <p>Who viewed, copied, autofilled, edited or shared — encrypted so only owners and admins can read it. Set password strength, biometric and auto-lock policies.</p>
+            <h3>iPhone, iPad and Mac</h3>
+            <p>Keyvane is an AutoFill credential provider, so your logins appear above the keyboard and in Safari. It fills logins, and on iOS 26.2 and later it can also save new ones when you sign up or change a password (they are added to your vault the next time you open Keyvane). On Mac, new passwords are added in the Keyvane app.</p>
           </article>
         </div>
-        <p class="small muted">Keyvane Cloud, or your own server, stores only encrypted files, public keys and the organisation's structure. See what the server can and cannot see on the <a href="privacy.html#keyvane-cloud">Privacy Policy</a> and <a href="security.html#limits">Security page</a>.</p>
+        <div class="callout info">
+          <p><strong>How it stays private.</strong> Autofill uses a separate, encrypted index of your logins that stays on the device and is unlocked with your fingerprint, face or device passcode. It never leaves the device.</p>
+        </div>
       </div>
     </section>
 
@@ -243,17 +273,17 @@
         <div class="section-head">
           <span class="eyebrow">Platforms</span>
           <h2>Everywhere you work</h2>
-          <p>One vault, the same encryption on every platform. Native autofill on Android, iOS and macOS. Biometric quick unlock everywhere it is supported.</p>
+          <p>One vault, the same encryption on every platform. Keyvane launches on iPhone, iPad, Mac and Android with native autofill and biometric unlock. Windows, Linux, the web vault, the browser extension and the <code>kv</code> CLI are built and in testing, and arrive after launch (the extension and CLI are part of Pro).</p>
         </div>
         <ul class="platforms">
-          <li><strong>Android</strong><span>Autofill service</span></li>
-          <li><strong>iOS / iPadOS</strong><span>AutoFill extension</span></li>
-          <li><strong>macOS</strong><span>Touch ID, Safari</span></li>
-          <li><strong>Windows</strong><span>Windows Hello</span></li>
-          <li><strong>Linux</strong><span>Flathub, AppImage, .deb</span></li>
-          <li><strong>Web</strong><span>Emergency access</span></li>
-          <li><strong>Browser extension</strong><span>Chrome, Edge, Firefox</span></li>
-          <li><strong><code>kv</code> CLI</strong><span>Scripts and CI</span></li>
+          <li><strong>Android</strong><span>Autofill, Credential Manager, passkeys</span></li>
+          <li><strong>iPhone and iPad</strong><span>AutoFill provider, Face ID</span></li>
+          <li><strong>Mac</strong><span>Touch ID, AutoFill</span></li>
+          <li class="later"><strong>Windows</strong><span>Windows Hello</span><em>Later</em></li>
+          <li class="later"><strong>Linux</strong><span>AppImage, .deb</span><em>Later</em></li>
+          <li class="later"><strong>Web</strong><span>Emergency access</span><em>Later</em></li>
+          <li class="later"><strong>Browser extension</strong><span>Chrome, Edge, Firefox, Safari</span><em>Later</em></li>
+          <li class="later"><strong><code>kv</code> CLI</strong><span>Scripts and CI</span><em>Later</em></li>
         </ul>
       </div>
     </section>
@@ -294,109 +324,82 @@
         <div class="section-head">
           <span class="eyebrow">Pricing</span>
           <h2>Simple plans, in pounds</h2>
-          <p>Planned pricing. Final prices and currencies will be confirmed at launch. Every plan, including Free, keeps your vault end-to-end encrypted in storage you own.</p>
+          <p>Start with 3 days free on Basic or Pro, then pay monthly, or buy Pro by the year or once for life. Prices in pounds sterling, including VAT where it applies. Every plan keeps your vault end-to-end encrypted in storage you choose.</p>
         </div>
         <div class="pricing">
           <article class="plan">
-            <h3>Free</h3>
-            <p class="price">£0</p>
-            <p class="alt">For personal use</p>
+            <h3>Basic</h3>
+            <p class="price">£2.99 <small>/ month</small></p>
+            <p class="alt">3 days free, then £2.99 a month</p>
             <ul>
-              <li>All platforms</li>
-              <li>1 vault, 3 clients</li>
-              <li>All own-storage options</li>
-              <li>Built-in 2FA codes</li>
+              <li>Unlimited passwords and logins</li>
+              <li>Unlimited groups</li>
+              <li>Sync: iCloud Drive, Google Drive, Dropbox, OneDrive</li>
+              <li>Device-to-device Wi-Fi sync</li>
+              <li>Autofill and saving passwords in apps (Android, iOS 26.2+)</li>
+              <li>2FA codes and passkeys</li>
+              <li>Security check and leaked-password check</li>
+              <li>Share a login</li>
+              <li>Import and export</li>
+              <li>Up to 3 client groups</li>
             </ul>
           </article>
           <article class="plan featured">
             <h3>Pro</h3>
-            <p class="price">£2.99 <small>/ month</small></p>
-            <p class="alt">or £24 / year · £99 lifetime</p>
+            <p class="price">£4.99 <small>/ month</small></p>
+            <p class="alt">3 days free, then £4.99 a month</p>
             <ul>
-              <li>Unlimited clients</li>
-              <li>Expiry reminders</li>
-              <li>Handover pack</li>
-              <li>CLI and attachments</li>
+              <li>Everything in Basic</li>
+              <li>Expiry and old-password reminders</li>
+              <li>File attachments</li>
+              <li>Unlimited client groups</li>
+              <li>Client handover pack</li>
+              <li>Browser extension and CLI</li>
             </ul>
           </article>
           <article class="plan">
-            <h3>Team</h3>
-            <p class="price">£3 <small>/ user / month</small></p>
-            <p class="alt">For small agencies</p>
+            <h3>Pro Yearly</h3>
+            <p class="price">£24 <small>/ year</small></p>
+            <p class="alt">Save 60% compared with Pro monthly</p>
             <ul>
               <li>Everything in Pro</li>
-              <li>Shared collections</li>
-              <li>Roles and groups</li>
-              <li>Activity log</li>
+              <li>Billed once a year</li>
+              <li>No free trial</li>
             </ul>
           </article>
           <article class="plan">
-            <h3>Business</h3>
-            <p class="price">£5 <small>/ user / month</small></p>
-            <p class="alt">For larger teams</p>
+            <h3>Pro Lifetime</h3>
+            <p class="price">£99 <small>once</small></p>
+            <p class="alt">One-off payment</p>
             <ul>
-              <li>Everything in Team</li>
-              <li>Policies</li>
-              <li>Guests with expiry</li>
-              <li>Reports and account recovery</li>
+              <li>Everything in Pro</li>
+              <li>No subscription</li>
+              <li>No free trial</li>
             </ul>
           </article>
-          <article class="plan">
-            <h3>Enterprise</h3>
-            <p class="price">Custom</p>
-            <p class="alt">Talk to us</p>
-            <ul>
-              <li>Everything in Business</li>
-              <li>SSO and SCIM</li>
-              <li>Self-hosted server</li>
-              <li>API</li>
-            </ul>
-          </article>
+        </div>
+        <p class="small muted">Plans are bought only in the app, through Apple App Store in-app purchase or Google Play Billing, using your store account (including Apple Pay or Google Pay). There is no checkout on this website and TechHigh never handles your payment. Purchases are available on iPhone, iPad, Mac (Mac App Store) and Android; purchasing in the Windows, Linux and web apps is coming later. The 3-day free trial becomes the paid monthly plan automatically unless you cancel in your App Store or Google Play account at least 24 hours before it ends. Subscriptions renew until cancelled; manage or cancel them in your store account, and request refunds from Apple or Google. Prices in other currencies are set by the store.</p>
+        <div class="callout info">
+          <p><strong>Without an active plan, your vault stays yours.</strong> If you have not started a trial, or your trial or subscription has ended, Keyvane is read-only: you can still open, view, copy and export your passwords, but you cannot add, edit or delete items, create groups, import, or turn on autofill until you subscribe. Your vault is never deleted or held back.</p>
         </div>
       </div>
     </section>
 
     <!-- Download -->
-    <section class="section" id="download">
+    <section class="section download" id="download">
       <div class="container">
-        <div class="section-head">
+        <div class="download-card">
+          <img class="download-icon" src="assets/img/icon-192.png" width="96" height="96" alt="">
           <span class="eyebrow">Download</span>
-          <h2>Coming soon to every store</h2>
-          <p>Keyvane is in final testing. Store listings will appear here as they go live.</p>
-        </div>
-
-        <div class="store-group">
-          <h3>Mobile</h3>
-          <ul class="stores">
-            <li><a class="store" data-store="google-play" data-url=""><span>Google Play</span><span class="store-soon">Coming soon</span></a></li>
-            <li><a class="store" data-store="app-store" data-url=""><span>App Store</span><span class="store-soon">Coming soon</span></a></li>
+          <h2>Get Keyvane</h2>
+          <p>Free for 3 days on Basic or Pro, then from £2.99 a month. One purchase covers your iPhone, iPad and Mac.</p>
+          <ul class="badges">
+            <li><a class="store store-badge" data-store="app-store" data-url=""><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9-.8 0-2-.9-3.3-.9-1.7 0-3.3 1-4.2 2.5-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8s2 .8 3.3.8c1.4 0 2.3-1.3 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9 0 0-2.8-1-2.8-4.2zM14 5.3c.7-.9 1.2-2 1-3.2-1 0-2.3.7-3 1.6-.7.8-1.2 2-1.1 3.1 1.2.1 2.3-.6 3.1-1.5z"/></svg><span><small>Download on the</small>App Store</span><span class="store-soon">Soon</span></a></li>
+            <li><a class="store store-badge" data-store="mac-app-store" data-url=""><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9-.8 0-2-.9-3.3-.9-1.7 0-3.3 1-4.2 2.5-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8s2 .8 3.3.8c1.4 0 2.3-1.3 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9 0 0-2.8-1-2.8-4.2zM14 5.3c.7-.9 1.2-2 1-3.2-1 0-2.3.7-3 1.6-.7.8-1.2 2-1.1 3.1 1.2.1 2.3-.6 3.1-1.5z"/></svg><span><small>Download on the</small>Mac App Store</span><span class="store-soon">Soon</span></a></li>
+            <li><a class="store store-badge" data-store="google-play" data-url=""><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3.6 2.2c-.3.3-.4.7-.4 1.2v17.2c0 .5.1.9.4 1.2l9.6-9.8zm10.6 8.8 2.7-2.7L5.1 1.6c-.4-.2-.8-.3-1.1-.2zm0 2-10.2 10.4c.3.1.7 0 1.1-.2l11.8-6.7zm3.9-3.9-3.1 3 3.1 3 3.4-1.9c1-.6 1-1.6 0-2.2z"/></svg><span><small>Get it on</small>Google Play</span><span class="store-soon">Soon</span></a></li>
           </ul>
+          <p class="small muted">Keyvane is launching soon on the App Store, Mac App Store and Google Play. These buttons become download links as each store goes live. Want an email when it does? <a href="mailto:support@techhigh.co.uk?subject=Tell%20me%20when%20Keyvane%20launches">Tell us</a>.</p>
         </div>
-
-        <div class="store-group">
-          <h3>Desktop</h3>
-          <ul class="stores">
-            <li><a class="store" data-store="mac-app-store" data-url=""><span>Mac App Store</span><span class="store-soon">Coming soon</span></a></li>
-            <li><a class="store" data-store="macos-dmg" data-url=""><span>macOS (DMG)</span><span class="store-soon">Coming soon</span></a></li>
-            <li><a class="store" data-store="microsoft-store" data-url=""><span>Microsoft Store</span><span class="store-soon">Coming soon</span></a></li>
-            <li><a class="store" data-store="windows-msix" data-url=""><span>Windows (MSIX)</span><span class="store-soon">Coming soon</span></a></li>
-            <li><a class="store" data-store="flathub" data-url=""><span>Flathub</span><span class="store-soon">Coming soon</span></a></li>
-            <li><a class="store" data-store="linux-appimage" data-url=""><span>Linux (AppImage / .deb)</span><span class="store-soon">Coming soon</span></a></li>
-          </ul>
-        </div>
-
-        <div class="store-group">
-          <h3>Browser extension and CLI</h3>
-          <ul class="stores">
-            <li><a class="store" data-store="chrome-web-store" data-url=""><span>Chrome Web Store</span><span class="store-soon">Coming soon</span></a></li>
-            <li><a class="store" data-store="edge-add-ons" data-url=""><span>Edge Add-ons</span><span class="store-soon">Coming soon</span></a></li>
-            <li><a class="store" data-store="firefox-add-ons" data-url=""><span>Firefox Add-ons</span><span class="store-soon">Coming soon</span></a></li>
-            <li><a class="store" data-store="web-vault" data-url=""><span>Web vault</span><span class="store-soon">Coming soon</span></a></li>
-            <li><a class="store" data-store="cli-homebrew" data-url=""><span><code>kv</code> CLI (Homebrew)</span><span class="store-soon">Coming soon</span></a></li>
-            <li><a class="store" data-store="cli-winget" data-url=""><span><code>kv</code> CLI (winget)</span><span class="store-soon">Coming soon</span></a></li>
-          </ul>
-        </div>
-        <p class="small muted">Store buttons are enabled by setting the <code>data-url</code> attribute on each link once a listing is live.</p>
       </div>
     </section>
 
@@ -414,11 +417,11 @@
           </details>
           <details>
             <summary>What is the Secret Key, and do I have to type it every time?</summary>
-            <div class="answer"><p>It is a long random code your device generates at sign-up. It is kept in your device's secure keychain, so you only type it when you set up a new device or restore from a backup. Keep the printed copy on your Emergency Kit somewhere safe.</p></div>
+            <div class="answer"><p>It is a long random code your device generates at sign-up. It is kept in your device's secure keychain, so day to day you only need your master password or biometrics. On Apple devices it is also saved in your iCloud Keychain, so a new iPhone, iPad or Mac only asks for your master password. On Android and Windows you scan the QR code on your Emergency Kit, or type the key, when you set up a new device. Keep the printed kit somewhere safe.</p></div>
           </details>
           <details>
-            <summary>Can TechHigh see my passwords if I use Keyvane Cloud?</summary>
-            <div class="answer"><p>No. Keyvane Cloud receives the same encrypted file as any other storage option. It also stores your email address, organisation and group names, and who can open which collection, so that sharing works. It never receives your master password, Secret Key, vault contents or collection names. The full list is in the <a href="privacy.html#keyvane-cloud">Privacy Policy</a>.</p></div>
+            <summary>Can TechHigh see my passwords?</summary>
+            <div class="answer"><p>No. TechHigh runs no server that receives your vault, and there is no Keyvane account. Your vault is encrypted on your device and saved directly to the storage you chose, which only ever holds an encrypted file. TechHigh never receives your master password, Secret Key or vault contents. See the <a href="privacy.html">Privacy Policy</a>.</p></div>
           </details>
           <details>
             <summary>Does it work offline?</summary>
@@ -426,7 +429,23 @@
           </details>
           <details>
             <summary>Can my client see what I keep in Keyvane?</summary>
-            <div class="answer"><p>Only what you choose to share. In an organisation, each collection has its own key and its own access list. Your personal vault is never visible to the organisation. For clients without Keyvane, the handover pack gives them an encrypted file with just their accounts.</p></div>
+            <div class="answer"><p>No, only what you choose to give them. You can share a single login through your phone's share sheet, or, with Pro, give them a handover pack: an encrypted file with just their accounts.</p></div>
+          </details>
+          <details>
+            <summary>Can I share a vault with my team?</summary>
+            <div class="answer"><p>Not yet. Team sharing is planned. Today each vault belongs to one person, and you can share individual logins as described above.</p></div>
+          </details>
+          <details>
+            <summary>Is Keyvane free?</summary>
+            <div class="answer"><p>No. Basic and Pro each start with a 3-day free trial, started in the app through the App Store or Google Play. After that Keyvane costs from £2.99 a month (Basic), or £4.99 a month, £24 a year or £99 once for Pro. If you don't want to continue, cancel in your store account at least 24 hours before the trial ends.</p></div>
+          </details>
+          <details>
+            <summary>How do I pay, and how do I cancel?</summary>
+            <div class="answer"><p>Plans are bought inside the app through the Apple App Store or Google Play. There is no web checkout, and TechHigh never sees your card details. To cancel, turn off renewal in your App Store or Google Play subscription settings; refunds are handled by Apple or Google.</p></div>
+          </details>
+          <details>
+            <summary>What happens when my trial or subscription ends?</summary>
+            <div class="answer"><p>Keyvane becomes read-only. You can still open, view, copy and export your passwords at any time, but you cannot add, edit or delete items, create groups, import, or turn on autofill until you subscribe again. Your vault is never deleted or held back, and export is always possible.</p></div>
           </details>
           <details>
             <summary>Why not just use a general password manager?</summary>
@@ -438,7 +457,7 @@
           </details>
           <details>
             <summary>Do you track me or use cookies?</summary>
-            <div class="answer"><p>No. This website sets no cookies and loads no analytics. The app sends no crash reports or usage data. See the <a href="privacy.html">Privacy Policy</a>.</p></div>
+            <div class="answer"><p>No. This website sets no cookies and loads no analytics. The app contains no analytics, advertising or crash-reporting code and sends no usage data. Reminders are local notifications created on your device. See the <a href="privacy.html">Privacy Policy</a>.</p></div>
           </details>
         </div>
       </div>
@@ -458,7 +477,7 @@
           <ul>
             <li><a href="#features">Features</a></li>
             <li><a href="#storage">Storage</a></li>
-            <li><a href="#organisations">Organisations</a></li>
+            <li><a href="#autofill">Autofill</a></li>
             <li><a href="#pricing">Pricing</a></li>
             <li><a href="#download">Download</a></li>
           </ul>
@@ -476,6 +495,7 @@
           <h4>Company</h4>
           <ul>
             <li><a href="https://techhigh.co.uk" rel="noopener">techhigh.co.uk</a></li>
+            <li><a href="support.html">Support</a></li>
             <li><a href="mailto:security@techhigh.co.uk">Report a vulnerability</a></li>
           </ul>
         </div>

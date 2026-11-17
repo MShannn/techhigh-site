@@ -27,7 +27,7 @@
         <ul>
           <li><a href="index.html#features">Features</a></li>
           <li><a href="index.html#storage">Storage</a></li>
-          <li><a href="index.html#organisations">Teams</a></li>
+          <li><a href="index.html#autofill">Autofill</a></li>
           <li><a href="security.html" aria-current="page">Security</a></li>
           <li><a href="index.html#pricing">Pricing</a></li>
           <li><a href="index.html#faq">FAQ</a></li>
@@ -52,7 +52,8 @@
           <li><a href="#secrets">The three secrets</a></li>
           <li><a href="#crypto">Cryptography</a></li>
           <li><a href="#format">Vault file format</a></li>
-          <li><a href="#sharing">Sharing and organisations</a></li>
+          <li><a href="#icloud-keychain">The iCloud Keychain trade-off</a></li>
+          <li><a href="#autofill">Autofill and sharing a login</a></li>
           <li><a href="#threat-model">Threat model</a></li>
           <li><a href="#limits">Honest limits</a></li>
           <li><a href="#device">On your device</a></li>
@@ -67,8 +68,7 @@
           <li>Your master password never leaves your devices. Your Secret Key is never sent to us or to your storage; on Apple devices it is also kept in your end-to-end encrypted iCloud Keychain.</li>
           <li>The vault is encrypted on your device with XChaCha20-Poly1305 before it is saved anywhere.</li>
           <li>Keys are derived with Argon2id from your password <em>and</em> a 160-bit random Secret Key, so a stolen file cannot be brute-forced.</li>
-          <li>Storage providers and TechHigh only ever receive encrypted bytes.</li>
-          <li>Sharing in organisations uses per-collection keys sealed to each member's public key, with out-of-band key verification.</li>
+          <li>TechHigh runs no server that receives your vault. Your storage provider only ever receives an encrypted file.</li>
           <li>Nobody can recover a vault without the password and the Secret Key. That includes us.</li>
         </ul>
 
@@ -78,7 +78,7 @@
             <thead><tr><th>Secret</th><th>Size</th><th>Where it lives</th></tr></thead>
             <tbody>
               <tr><td>Master password</td><td>Your choice</td><td>Only in your head (and, optionally, handwritten on your Emergency Kit).</td></tr>
-              <tr><td>Secret Key</td><td>20 random bytes (160 bits)</td><td>Your device's keychain, the printed Emergency Kit and, on Apple devices, your iCloud Keychain (end-to-end encrypted by Apple). Never in the vault file, never sent to us or to your storage.</td></tr>
+              <tr><td>Secret Key</td><td>20 random bytes (160 bits)</td><td>Your device's keychain, the printed Emergency Kit and, on Apple devices, your iCloud Keychain (end-to-end encrypted by Apple). On Android and Windows a new device gets it from the Emergency Kit, by scanning its QR code or typing it. Never in the vault file, never sent to us or to your storage.</td></tr>
               <tr><td>Vault key</td><td>32 random bytes</td><td>Inside the vault file, wrapped by the master key. Optionally in the device keychain behind biometrics for quick unlock.</td></tr>
             </tbody>
           </table>
@@ -94,9 +94,6 @@
               <tr><td>Encryption</td><td>XChaCha20-Poly1305 (24-byte random nonce, 16-byte tag)</td></tr>
               <tr><td>Randomness</td><td>Operating-system CSPRNG</td></tr>
               <tr><td>2FA codes</td><td>TOTP, RFC 6238 (HMAC-SHA1/256/512), default 6 digits / 30 s</td></tr>
-              <tr><td>Key agreement (sharing)</td><td>X25519 (RFC 7748)</td></tr>
-              <tr><td>Signatures (sharing)</td><td>Ed25519 (RFC 8032)</td></tr>
-              <tr><td>Key derivation from shared secrets</td><td>HKDF-SHA256 (RFC 5869)</td></tr>
             </tbody>
           </table>
         </div>
@@ -123,36 +120,37 @@ payload    = XChaCha20-Poly1305(JSON(VaultData), key = vaultKey, aad = "keyvane:
 }</code></pre>
         <p>Sync merges by record: a record on one side only is kept; the newer version of the same record wins and the older one goes into that item's history, so nothing is lost. Uploads use the provider's revision tag, so a newer remote file is merged, never overwritten.</p>
 
-        <h2 id="sharing">Sharing and organisations</h2>
-        <p>A Keyvane Cloud account (or an account on your own server) has two key pairs generated on your device: X25519 for receiving keys and Ed25519 for signing. To sign in, the client sends only an <em>authentication key</em> derived from your master key with HKDF; the server stores an Argon2id hash of it and never sees the password.</p>
+        <h2 id="icloud-keychain">The iCloud Keychain trade-off</h2>
+        <p>On iPhone, iPad and Mac, Keyvane also saves your Secret Key in your iCloud Keychain, which Apple end-to-end encrypts. That is why a new Apple device only asks for your master password. It is a convenience with a real cost, and we want you to know exactly what it is:</p>
         <ul>
-          <li>Each shared <strong>collection</strong> is encrypted with its own random key and a key version.</li>
-          <li>A <strong>key grant</strong> seals a collection key to one member's public key (X25519 sealed box, HKDF-SHA256, XChaCha20-Poly1305) and is signed by the person who shared it. Unsigned or wrongly signed grants are refused.</li>
-          <li>Before anyone receives keys, their <strong>five verification words</strong> (derived from their public keys) are compared by voice or in person, then certified by the approving admin. Clients trust a key only through such a certificate chain back to the organisation creator.</li>
-          <li><strong>Offboarding</strong> rotates the key of every collection the person could open and re-encrypts the data; old keys cannot read anything saved afterwards.</li>
-          <li>The <strong>activity log</strong> is signed by the author and sealed to an organisation audit key that only owners and admins hold.</li>
+          <li>Someone who gets your vault file <em>and</em> gets into your iCloud Keychain (your Apple ID plus a trusted device or its passcode) holds your Secret Key. Between them and your vault there is then only your master password and Argon2id — the same protection as a password-only design.</li>
+          <li>Everyone else, including your storage provider, anyone who steals the vault file on its own, and TechHigh, still faces the full 160-bit Secret Key.</li>
+          <li>So on Apple devices, a <strong>strong master password</strong> and a well-protected Apple account (two-factor authentication, a strong device passcode) matter more. Keyvane has no separate switch for this; if iCloud Keychain is turned off in your Apple account settings, the Secret Key is kept only on the device and on your Emergency Kit.</li>
+        </ul>
+
+        <h2 id="autofill">Autofill and sharing a login</h2>
+        <ul>
+          <li><strong>Autofill</strong> uses a separate encrypted index of logins (and, on Android 14 and later, passkeys) that stays on the device and is unlocked with biometrics or the device passcode, so the system autofill service can work without the full vault being open. On Android, Keyvane is an Autofill service and works with Credential Manager to fill and save; on iOS and macOS it is an AutoFill credential provider that fills logins and, on iOS 26.2 and later, can also save new ones; on Mac, new passwords are added in the app.</li>
+          <li><strong>Sharing a login</strong> sends its username, password and website as plain text to the share sheet or clipboard, after a biometric check. From that point it is outside Keyvane's encryption and is as private as the app or person you shared it with.</li>
+          <li>Keyvane does not offer shared vaults today. Team sharing is planned and will be described here, with its own threat model, before it ships.</li>
         </ul>
 
         <h2 id="threat-model">Threat model</h2>
         <h3>What Keyvane protects against</h3>
         <ul>
           <li><strong>A stolen or leaked vault file</strong> — from a cloud breach, a lost laptop backup or a shared drive. Without the password and Secret Key the file is unreadable, and the Secret Key makes guessing infeasible.</li>
-          <li><strong>A curious or compromised storage provider</strong>, including Keyvane Cloud. Providers see encrypted bytes, file sizes and timestamps, nothing more.</li>
-          <li><strong>A malicious Keyvane Cloud server.</strong> Public keys are verified out of band and certified; every key grant and audit key is signed; ciphertexts are bound to their ids, organisation and key version, so they cannot be swapped around. The server cannot read or forge encrypted data, and cannot trick clients into encrypting to a key it knows.</li>
+          <li><strong>A curious or compromised storage provider</strong>, whichever you choose. Providers see an encrypted file, its size and timestamps, nothing more.</li>
+          <li><strong>A compromised TechHigh.</strong> TechHigh never holds your vault, your master password or your Secret Key, so there is nothing of yours on our side to leak.</li>
           <li><strong>Tampering with files</strong> — authenticated encryption detects any change.</li>
-          <li><strong>Someone who used to have access</strong> — key rotation on offboarding stops them reading anything new.</li>
         </ul>
 
         <h2 id="limits">Honest limits</h2>
         <p>Encryption protects people who have <em>no</em> key. It cannot protect you from things that happen on an unlocked device, or from people you chose to trust. Specifically:</p>
         <ul>
-          <li><strong>Autofill-only is enforced by the app.</strong> Someone with the collection key and a modified client could still read it. Choose people accordingly. Crypto guarantees apply to people who have no key.</li>
-          <li><strong>Roles and access lists are enforced by the server.</strong> A malicious server could hide data or deny service, and could show you a stale view, but cannot read or forge encrypted data.</li>
-          <li><strong>The organisation creator's key is trusted on first use.</strong> Compare the owner's verification code once if you want to rule out a server lying on day one.</li>
-          <li><strong>Five words are about 64 bits</strong> — fine for a live comparison, not a long-term identity.</li>
-          <li><strong>The activity log records what Keyvane apps report.</strong> It cannot see copies made with other tools after someone legitimately viewed a password.</li>
-          <li><strong>Policy checks for password strength are guidance.</strong> The server cannot see passwords.</li>
-          <li><strong>Rotation cannot un-see data.</strong> After offboarding, Keyvane lists the passwords the person could see so you can change them at each service.</li>
+          <li><strong>On Apple devices, your iCloud Keychain holds your Secret Key.</strong> Anyone who has both your vault file and access to your iCloud Keychain only needs to guess your master password. See <a href="#icloud-keychain">the trade-off</a>.</li>
+          <li><strong>Anything you share leaves the encryption.</strong> A login shared through the share sheet or clipboard is plain text in whatever app receives it.</li>
+          <li><strong>Autofill fills what you approve.</strong> It matches logins to apps and websites, but you should still check you are on the right site before filling.</li>
+          <li><strong>The breach check reveals a hash prefix.</strong> Only the first 5 characters of each password's SHA-1 hash are sent to Have I Been Pwned (k-anonymity, with padding), and only when you run the check.</li>
           <li><strong>Malware on an unlocked device</strong> can read what you can read. Keyvane limits the window with auto-lock, clipboard clearing and screenshot blocking, but no password manager can defend an owned device.</li>
           <li><strong>Lose both your password and your Emergency Kit</strong> and nobody can recover your vault. This is a deliberate property, not a missing feature.</li>
         </ul>
@@ -169,17 +167,17 @@ payload    = XChaCha20-Poly1305(JSON(VaultData), key = vaultKey, aad = "keyvane:
         </ul>
 
         <h2 id="disclosure">Responsible disclosure</h2>
-        <p>If you believe you have found a security problem in Keyvane, the Keyvane Cloud server, the browser extension, the CLI or this website, please tell us privately first.</p>
+        <p>If you believe you have found a security problem in the Keyvane apps, the browser extension, the CLI or this website, please tell us privately first.</p>
         <ul>
           <li>Email <a href="mailto:security@techhigh.co.uk">security@techhigh.co.uk</a>. Include steps to reproduce, affected versions and, if you have one, a proof of concept.</li>
           <li>Machine-readable contact details are published at <a href=".well-known/security.txt"><code>/.well-known/security.txt</code></a> (RFC 9116).</li>
           <li>We aim to acknowledge reports within 3 working days and to keep you informed as we fix the issue.</li>
-          <li>Please give us reasonable time to fix before publishing, do not access or modify data that is not yours, and do not run tests against Keyvane Cloud that could degrade service for others.</li>
+          <li>Please give us reasonable time to fix before publishing, do not access or modify data that is not yours, and do not run tests that could affect other people's accounts or storage.</li>
           <li>We will not take legal action against researchers who act in good faith and follow these guidelines, and we are happy to credit you when the fix ships if you wish.</li>
         </ul>
-        <p>An external security audit of the core library, the server and the extension is planned before public launch. This page will link to the report.</p>
+        <p>An external security audit of the core library and the extension is planned before public launch. This page will link to the report.</p>
 
-        <p class="small muted">Full specification: the vault format and crypto specification (v1 and v2) in the Keyvane repository. This page is a summary and the specification takes precedence where they differ.</p>
+        <p class="small muted">Full specification: the vault format and crypto specification (v1) in the Keyvane repository. This page is a summary and the specification takes precedence where they differ.</p>
       </div>
     </div>
   </main>
@@ -196,7 +194,7 @@ payload    = XChaCha20-Poly1305(JSON(VaultData), key = vaultKey, aad = "keyvane:
           <ul>
             <li><a href="index.html#features">Features</a></li>
             <li><a href="index.html#storage">Storage</a></li>
-            <li><a href="index.html#organisations">Organisations</a></li>
+            <li><a href="index.html#autofill">Autofill</a></li>
             <li><a href="index.html#pricing">Pricing</a></li>
             <li><a href="index.html#download">Download</a></li>
           </ul>
@@ -214,6 +212,7 @@ payload    = XChaCha20-Poly1305(JSON(VaultData), key = vaultKey, aad = "keyvane:
           <h4>Company</h4>
           <ul>
             <li><a href="https://techhigh.co.uk" rel="noopener">techhigh.co.uk</a></li>
+            <li><a href="support.html">Support</a></li>
             <li><a href="mailto:security@techhigh.co.uk">Report a vulnerability</a></li>
           </ul>
         </div>
