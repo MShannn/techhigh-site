@@ -3,17 +3,23 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Keyvane — Your keys. Your cloud. Nobody else.</title>
-  <meta name="description" content="Keyvane is the end-to-end encrypted client-account vault for developers, freelancers and agencies. Logins, API keys and 2FA, encrypted on your device and stored where you choose: the device, iCloud Drive, Google Drive, Dropbox, OneDrive or your own storage.">
+  <title>Keyvane – Password Manager for Agencies and Developers</title>
+  <meta name="description" content="End-to-end encrypted password manager for agencies, freelancers and developers. Client logins, API keys and 2FA codes, stored in your own cloud.">
   <meta name="color-scheme" content="dark light">
   <meta name="theme-color" content="#0E0B1F" media="(prefers-color-scheme: dark)">
   <meta name="theme-color" content="#F6F6FC" media="(prefers-color-scheme: light)">
   <link rel="canonical" href="https://techhigh.co.uk/keyvane/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Keyvane — Your keys. Your cloud. Nobody else.">
+  <meta property="og:title" content="Keyvane – Your keys. Your cloud. Nobody else.">
   <meta property="og:description" content="The end-to-end encrypted client-account vault for developers and agencies. Stored in your own cloud.">
   <meta property="og:url" content="https://techhigh.co.uk/keyvane/">
   <meta property="og:site_name" content="Keyvane by TechHigh">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="586">
+  <meta name="twitter:title" content="Keyvane – Password Manager for Agencies and Developers">
+  <meta name="twitter:description" content="End-to-end encrypted vault for client logins, API keys and 2FA, stored in your own cloud.">
+  <meta name="twitter:image" content="https://techhigh.co.uk/keyvane/assets/img/og.jpg">
   <meta property="og:image" content="https://techhigh.co.uk/keyvane/assets/img/og.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="apple-touch-icon" href="assets/img/icon-192.png">
@@ -23,6 +29,183 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@600;700&amp;display=swap">
   <link rel="stylesheet" href="assets/style.css">
   <script src="assets/site.js"></script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Keyvane",
+  "alternateName": "Keyvane Password Vault",
+  "url": "https://techhigh.co.uk/keyvane/",
+  "image": "https://techhigh.co.uk/keyvane/assets/img/og.jpg",
+  "description": "End-to-end encrypted client-account vault for developers, freelancers and agencies: logins, API keys and 2FA codes organised by client, stored in your own cloud.",
+  "applicationCategory": "SecurityApplication",
+  "operatingSystem": "iOS, iPadOS, macOS, Android, Web",
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Basic monthly",
+      "price": "2.99",
+      "priceCurrency": "GBP"
+    },
+    {
+      "@type": "Offer",
+      "name": "Pro monthly",
+      "price": "4.99",
+      "priceCurrency": "GBP"
+    },
+    {
+      "@type": "Offer",
+      "name": "Pro yearly",
+      "price": "24.00",
+      "priceCurrency": "GBP"
+    },
+    {
+      "@type": "Offer",
+      "name": "Pro lifetime",
+      "price": "99.00",
+      "priceCurrency": "GBP"
+    }
+  ],
+  "featureList": [
+    "Clients, projects and environments",
+    "Built-in 2FA (TOTP) codes",
+    "Expiry reminders",
+    "Client handover pack",
+    "Autofill on iPhone, iPad, Mac and Android",
+    "Storage in iCloud Drive, Google Drive, Dropbox, OneDrive, WebDAV or S3",
+    "Argon2id and XChaCha20-Poly1305 end-to-end encryption"
+  ],
+  "publisher": {
+    "@type": "Organization",
+    "name": "TechHigh",
+    "url": "https://techhigh.co.uk/"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What happens if I forget my master password?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use the master password written on your Emergency Kit. If you have lost both the password and the kit, the vault cannot be opened by anyone, including TechHigh. There is no reset link, because a reset link would mean someone else could open your vault too."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the Secret Key, and do I have to type it every time?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is a long random code your device generates at sign-up. It is kept in your device's secure keychain, so day to day you only need your master password or biometrics. On Apple devices it is also saved in your iCloud Keychain, so a new iPhone, iPad or Mac only asks for your master password. On Android and Windows you scan the QR code on your Emergency Kit, or type the key, when you set up a new device. Keep the printed kit somewhere safe."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can TechHigh see my passwords?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. TechHigh runs no server that receives your vault, and there is no Keyvane account. Your vault is encrypted on your device and saved directly to the storage you chose, which only ever holds an encrypted file. TechHigh never receives your master password, Secret Key or vault contents. See the Privacy Policy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it work offline?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The vault lives on your device and opens, edits and autofills without a connection. Changes sync and merge when you are back online."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can my client see what I keep in Keyvane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, only what you choose to give them. You can share a single login through your phone's share sheet, or, with Pro, give them a handover pack: an encrypted file with just their accounts."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I share a vault with my team?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not yet. Team sharing is planned. Today each vault belongs to one person, and you can share individual logins as described above."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Keyvane free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Basic and Pro each start with a 3-day free trial, started in the app through the App Store or Google Play. After that Keyvane costs from £2.99 a month (Basic), or £4.99 a month, £24 a year or £99 once for Pro. If you don't want to continue, cancel in your store account at least 24 hours before the trial ends."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I pay, and how do I cancel?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Plans are bought inside the app through the Apple App Store or Google Play. There is no web checkout, and TechHigh never sees your card details. To cancel, turn off renewal in your App Store or Google Play subscription settings; refunds are handled by Apple or Google."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens when my trial or subscription ends?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Keyvane becomes read-only. You can still open, view, copy and export your passwords at any time, but you cannot add, edit or delete items, create groups, import, or turn on autofill until you subscribe again. Your vault is never deleted or held back, and export is always possible."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why not just use a general password manager?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can, and many do. Keyvane adds the structure client work needs — clients, projects, environments, account ownership, who holds the 2FA, expiry dates, handover — and lets you keep the data in storage you already control rather than on a vendor's servers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the code open source?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The file format and encryption are documented publicly on the Security page. Publishing the core library as open source, together with an external audit, is planned before public launch."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you track me or use cookies?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. This website sets no cookies and loads no analytics. The app contains no analytics, advertising or crash-reporting code and sends no usage data. Reminders are local notifications created on your device. See the Privacy Policy."
+      }
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "TechHigh",
+      "item": "https://techhigh.co.uk/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Keyvane",
+      "item": "https://techhigh.co.uk/keyvane/"
+    }
+  ]
+}
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
