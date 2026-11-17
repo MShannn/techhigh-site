@@ -892,3 +892,49 @@ th { font-weight: 600; color: var(--muted); font-size: 0.85rem; text-transform: 
 .pricing + .small { margin-top: 1.5rem; }
 @media (min-width: 900px) { .platforms { grid-template-columns: repeat(4, 1fr); } }
 .store.store-badge { border-radius: 12px; display: flex; flex-direction: row; align-items: center; gap: 0.7rem; }
+
+/* ---------- Platforms (OS cards) ---------- */
+.os-grid {
+  list-style: none; padding: 0; margin: 0;
+  display: grid; gap: 1rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 640px) { .os-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 980px) { .os-grid { grid-template-columns: repeat(3, 1fr); } }
+.os-card {
+  --os-color: var(--text);
+  --os-bg: var(--surface-high);
+  position: relative;
+  display: flex; gap: 1rem; align-items: flex-start;
+  padding: 1.4rem 1.25rem 1.25rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.os-card:hover { transform: translateY(-3px); border-color: var(--primary); box-shadow: var(--shadow); }
+.os-card.android { --os-color: #3DDC84; }
+.os-card.windows { --os-color: #0A84FF; }
+.os-icon {
+  flex: none; width: 52px; height: 52px; border-radius: 14px;
+  display: grid; place-items: center;
+  background: var(--os-bg); color: var(--os-color);
+}
+.os-icon svg { width: 28px; height: 28px; }
+.os-body { min-width: 0; }
+.os-body h3 { margin: 0 0 .15rem; font-size: 1.1rem; }
+.os-body > p { margin: 0 0 .6rem; color: var(--muted); font-size: .88rem; }
+.os-feats { list-style: none; padding: 0; margin: 0; font-size: .9rem; }
+.os-feats li { padding: .18rem 0 .18rem 1.1rem; position: relative; }
+.os-feats li::before {
+  content: ""; position: absolute; left: 0; top: .62rem;
+  width: 6px; height: 6px; border-radius: 50%; background: var(--primary);
+}
+.os-status {
+  position: absolute; top: .9rem; right: .9rem;
+  font-size: .66rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  padding: .22rem .55rem; border-radius: 999px; white-space: nowrap;
+}
+.os-card.now .os-status { color: var(--success); background: color-mix(in srgb, var(--success) 14%, transparent); }
+.os-card.soon .os-status { color: var(--cyan-text); background: color-mix(in srgb, var(--cyan) 14%, transparent); }
+.os-card .os-body h3 { padding-right: 6.5rem; }
